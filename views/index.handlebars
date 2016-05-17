@@ -1,3 +1,34 @@
-<div class="container main">
-  <h1>Hello!</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="hexagram">
+        <div class="line yang"></div>
+        <div class="line yang"></div>
+        <div class="line yang"></div>
+        <div class="divider"></div>
+        <div class="line yang"></div>
+        <div class="line yang"></div>
+        <div class="line yang"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('.line').click(function () {
+      var el = $(this);
+      var yang = el.hasClass('yang');
+
+      if (yang) {
+        el.removeClass('yang');
+        el.addClass('yin');
+      } else {
+        el.removeClass('yin');
+        el.addClass('yang');
+      }
+
+      console.log('click');
+    });
+  });
+</script>

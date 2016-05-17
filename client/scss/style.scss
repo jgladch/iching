@@ -1,8 +1,39 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.hexagram {
+  width: 100%;
+  margin: 0 auto;
+
+  .line {
+    height: 30px;
+    margin: 20px 5px;
+  }
+
+  .divider {
+    height: 0;
+    margin: 30px;
+  }
+
+  .yin {
+    background-color: red;
+  }
+
+  .yin:before {
+    content: "";
+    position: absolute;
+    width: 16%;
+    left: 42%;
+    background-color: #FFF;
+    height: 30px;
+  }
+
+  .yang {
+    background-color: #000000;
+  }
 }
