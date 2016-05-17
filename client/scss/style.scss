@@ -21,19 +21,24 @@ a {
   }
 
   .yin {
-    background-color: red;
-  }
+    background-color: #000;
 
-  .yin:before {
-    content: "";
-    position: absolute;
-    width: 16%;
-    left: 42%;
-    background-color: #FFF;
-    height: 30px;
+    .center {
+      background-color: #FFF;
+      width: 0;
+      height: 32px;
+      margin: 0 auto;
+    }
   }
 
   .yang {
-    background-color: #000000;
+    background-color: #000;
+
+    .center {
+      background-color: #FFF;
+      width: 0;
+      height: 32px;
+      margin: 0 auto;
+    }
   }
 }
