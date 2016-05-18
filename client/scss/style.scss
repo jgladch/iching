@@ -6,9 +6,17 @@ a {
   color: #00B7FF;
 }
 
-.heading h1 {
-  display: inline;
-  font-size: 60px;
+.heading {
+  vertical-align: top;
+
+  h1 {
+    display: inline;
+    font-size: 60px;
+  }
+
+  #width {
+    display: none;
+  }
 }
 
 .heading .info {

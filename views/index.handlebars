@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <div class="heading">
+        <h1><span id="width"></span></h1>
         <h1 class="order">1</h1>
         <div class="info">
           <h3 class="name">Qian</h3>
@@ -73,9 +74,15 @@
       });
 
       if (!!hexagram) {
-        $('.heading .name').text(hexagram.name);
-        $('.heading .title').text(hexagram.title);
-        $('.heading .order').text(hexagram.order);
+        $('.heading').velocity({
+          opacity: 0
+        }, function () {
+          $('.heading .name').text(hexagram.name);
+          $('.heading .title').text(hexagram.title);
+          $('.heading .order').text(hexagram.order);
+          
+          $('.heading').velocity('transition.expandIn');
+        })
       }
 
       console.log('hexagram: ', hexagram);
