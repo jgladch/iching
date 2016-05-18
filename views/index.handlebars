@@ -2,11 +2,9 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <div class="heading">
-        <h1><span id="width"></span></h1>
-        <h1 class="order">1</h1>
-        <div class="info">
-          <h2 class="title">Initiating</h3>
-          {{!-- <h5 class="name">Qian</h5> --}}
+        <div class="heading-container">
+          <text class="title">Initiating</text>
+          <text class="order">1</text>
         </div>
       </div>
       <div class="hexagram">
@@ -19,7 +17,6 @@
         <div class="line yang">
           <div class="center">&nbsp;</div>
         </div>
-        {{!-- <div class="divider"></div> --}}
         <div class="line yang">
           <div class="center">&nbsp;</div>
         </div>
@@ -363,8 +360,6 @@
         return !!$(this).hasClass('yang') ? 1 : 0;
       }).get().reverse();
 
-      console.log('sequence: ', sequence);
-
       return sequence;
     };
 
@@ -374,25 +369,24 @@
       });
 
       if (!!hexagram) {
-        $('.heading').velocity({
+        $('.heading .order').velocity('transition.flipXOut', 200, function () {
+          $('.heading .order').text(hexagram.order);
+        }).velocity('transition.flipXIn', 300);
+
+        $('.heading .title').velocity({
+          translateX: 100,
           opacity: 0
         }, 200, function () {
-          // $('.heading .name').text(hexagram.name);
           $('.heading .title').text(hexagram.title);
-          $('.heading .order').text(hexagram.order);
-          
-          $('.heading').velocity('transition.slideRightIn');
-        })
+        }).velocity('transition.slideRightIn', 300);
       }
-
-      console.log('hexagram: ', hexagram);
     };
 
     $('.line').click(function () {
       var el = $(this);
-      var yang = el.hasClass('yang');
+      var isYang = el.hasClass('yang');
 
-      if (yang) {
+      if (isYang) {
         el.removeClass('yang');
         el.addClass('yin');
         el.children().velocity({
@@ -407,9 +401,7 @@
       }
 
       var sequence = getCurrentSequence();
-      getCurrentHexagram(sequence);
-
-      console.log('click');
+      return getCurrentHexagram(sequence);
     });
   });
 </script>

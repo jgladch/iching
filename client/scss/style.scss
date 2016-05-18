@@ -1,34 +1,36 @@
 body {
-  font: 14px Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+  font-family: 'Overlock SC', cursive;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #FBFBFB;
 }
 
 .heading {
-  vertical-align: top;
+  height: 65px;
+  width: 100%;
 
-  h1 {
-    display: inline;
-    font-size: 60px;
+  .heading-container {
+    height: 100%;
+    width: 100%;
   }
 
-  #width {
-    display: none;
+  .order {
+    font-size: 75px;
+    float: left;
+    clear: none;
+    position: relative;
+    bottom: 13px;
   }
-}
 
-.heading .info {
-  display: inline-block;
-}
-
-.trigrams {
-  float: left;
-
-  .trigram {
-    transform: rotate(90deg);
-    transform-origin: left top 0;
+  .title {
+    font-size: 30px;
+    float: right;
+    clear: none;
+    position: relative;
+    right: 3px;
+    top: 34px;
+    opacity: 1;
+    transform: translateX(0px);
+    display: block;
   }
 }
 
@@ -47,10 +49,10 @@ a {
   }
 
   .yin {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.65);
 
     .center {
-      background-color: #FFF;
+      background-color: #FBFBFB;
       width: 0;
       height: 32px;
       margin: 0 auto;
@@ -58,10 +60,10 @@ a {
   }
 
   .yang {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.65);
 
     .center {
-      background-color: #FFF;
+      background-color: #FBFBFB;
       width: 0;
       height: 32px;
       margin: 0 auto;
