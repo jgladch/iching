@@ -6,6 +6,15 @@ a {
   color: #00B7FF;
 }
 
+.heading h1 {
+  display: inline;
+  font-size: 60px;
+}
+
+.heading .info {
+  display: inline-block;
+}
+
 .hexagram {
   width: 100%;
   margin: 0 auto;

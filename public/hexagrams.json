@@ -1,0 +1,21 @@
+[{
+  "name": "Qian",
+  "title": "Initiating",
+  "order": 1,
+  "sequence": [1, 1, 1, 1, 1, 1]
+}, {
+  "name": "Kun",
+  "title": "Responding",
+  "order": 2,
+  "sequence": [0, 0, 0, 0, 0, 0]
+}, {
+  "name": "Zhun",
+  "title": "Beginning",
+  "order": 3,
+  "sequence": [1, 0, 0, 0, 1, 0]
+}, {
+  "name": "Guai",
+  "title": "Eliminating",
+  "order": 43,
+  "sequence": [1, 1, 1, 1, 1, 0]
+}]

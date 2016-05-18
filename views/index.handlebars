@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
+      <div class="heading">
+        <h1 class="order">1</h1>
+        <div class="info">
+          <h3 class="name">Qian</h3>
+          <h5 class="title">Initiating</h5>
+        </div>
+      </div>
       <div class="hexagram">
         <div class="line yang">
           <div class="center">&nbsp;</div>
@@ -28,6 +35,52 @@
 
 <script>
   $(document).ready(function () {
+    var hexagrams = [{
+      "name": "Qian",
+      "title": "Initiating",
+      "order": 1,
+      "sequence": [1, 1, 1, 1, 1, 1]
+    }, {
+      "name": "Kun",
+      "title": "Responding",
+      "order": 2,
+      "sequence": [0, 0, 0, 0, 0, 0]
+    }, {
+      "name": "Zhun",
+      "title": "Beginning",
+      "order": 3,
+      "sequence": [1, 0, 0, 0, 1, 0]
+    }, {
+      "name": "Guai",
+      "title": "Eliminating",
+      "order": 43,
+      "sequence": [1, 1, 1, 1, 1, 0]
+    }];
+
+    var getCurrentSequence = function () {
+      var sequence = $('.hexagram').children('.line').map(function () {
+        return !!$(this).hasClass('yang') ? 1 : 0;
+      }).get().reverse();
+
+      console.log('sequence: ', sequence);
+
+      return sequence;
+    };
+
+    var getCurrentHexagram = function (sequence) {
+      var hexagram = _.find(hexagrams, function (hexagram) {
+        return _.isEqual(hexagram.sequence, sequence);
+      });
+
+      if (!!hexagram) {
+        $('.heading .name').text(hexagram.name);
+        $('.heading .title').text(hexagram.title);
+        $('.heading .order').text(hexagram.order);
+      }
+
+      console.log('hexagram: ', hexagram);
+    };
+
     $('.line').click(function () {
       var el = $(this);
       var yang = el.hasClass('yang');
@@ -36,8 +89,8 @@
         el.removeClass('yang');
         el.addClass('yin');
         el.children().velocity({
-          width: '20%'
-        });
+          width: '25%'
+        }, 'spring');
       } else {
         el.removeClass('yin');
         el.addClass('yang');
@@ -45,6 +98,9 @@
           width: 0
         });
       }
+
+      var sequence = getCurrentSequence();
+      getCurrentHexagram(sequence);
 
       console.log('click');
     });
