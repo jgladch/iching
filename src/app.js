@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, '../', 'public')));
 
-app.set('port', 3030);
+app.set('port', process.env.PORT || 3030);
 
 app.get('/', (req, res, next) => {
   return res.render('index');
