@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>{{title }}</title>
+  <title>{{title}}</title>
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/style.css">
   <link href='https://fonts.googleapis.com/css?family=Overlock+SC|Miniver|Kanit|Rubik|Work+Sans' rel='stylesheet' type='text/css'>
-  <link rel="manifest" href="/manifest.json">
+
+  {{#if breathing}}
+    <link rel="manifest" href="/breathing-manifest.json">
+  {{else}}
+    <link rel="manifest" href="/hexpad-manifest.json">
+  {{/if}}
+
   <script src="jquery-2.1.3.min.js"></script>
   <script src="underscore-min.js"></script>
   <script src="velocity.min.js"></script>

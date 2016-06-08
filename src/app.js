@@ -18,11 +18,15 @@ app.use(express.static(path.join(__dirname, '../', 'public')));
 app.set('port', process.env.PORT || 3030);
 
 app.get('/', (req, res, next) => {
-  return res.render('index');
+  return res.render('index', {
+    breathing: false
+  });
 });
 
 app.get('/breathing', (req, res, next) => {
-  return res.render('breathing');
+  return res.render('breathing', {
+    breathing: true
+  });
 });
 
 const server = app.listen(app.get('port'), () => {

@@ -1,0 +1,17 @@
+{
+  "name": "Breathing",
+  "short_name": "breathing",
+  "display": "standalone",
+  "background_color": "gray",
+  "icons": [{
+    "src": "images/ios/Icon-60.png",
+    "sizes": "60x60",
+    "type": "image/png"
+  }, {
+    "src": "images/ios/Icon-72@2x.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }],
+  "prefer_related_applications": false,
+  "theme_color": "black"
+}
