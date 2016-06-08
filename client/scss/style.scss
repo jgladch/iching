@@ -1,12 +1,13 @@
 body {
-  font-family: 'Overlock SC', cursive;
-  color: #FFFFFF;
   background-color: #000000;
 }
 
 .heading {
   height: 65px;
   width: 100%;
+
+  font-family: 'Overlock SC', cursive;
+  color: #FFFFFF;
 
   .heading-container {
     height: 100%;
@@ -79,7 +80,7 @@ body {
   bottom: 30px;
   left: 0;
   right: 0;
-  background-color: #FFFFFF;
+  background-color: #000000;
 
   #ball {
     margin: 0 auto;
@@ -90,6 +91,7 @@ body {
   }
 }
 
+
 #breathe-buttons {
   position: absolute;
   height: 30px;
@@ -97,4 +99,11 @@ body {
   left: 0;
   right: 0;
   background-color: gray;
+  
+  #rate {
+    float: right;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding-right: 5px;
+  }
 }

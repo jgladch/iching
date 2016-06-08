@@ -7,13 +7,14 @@
     <button id="stop" class="btn btn-sm btn-default">Stop</button>
     <button id="increase" class="btn btn-sm btn-default">Increase</button>
     <button id="decrease" class="btn btn-sm btn-default">Decrease</button>
+    <text id="rate"></text>
   </div>
 </div>
 <script>
   $(document).ready(function () {
     var flip = true;
     var cont = true;
-    var duration = 500;
+    var duration = 1500;
 
     var animateBall = function () {
       var height = $('#breathe').outerHeight();
@@ -35,6 +36,12 @@
       flip = !flip;
     };
 
+    var setDurationText = function () {
+      $('text#rate').text(Math.ceil((60 / (duration / 1000) * 2)) + ' BPM');
+    };
+
+    setDurationText();
+
     $('#start').click(function () {
       cont = true;
       animateBall();
@@ -45,11 +52,13 @@
     });
 
     $('#increase').click(function () {
-      duration+=1000;
+      duration+=100;
+      setDurationText();
     });
 
     $('#decrease').click(function () {
-      duration-=1000;
+      duration-=100;
+      setDurationText();
     });
 
   });
