@@ -13,9 +13,24 @@
 <script>
   $(document).ready(function () {
     var flip = true;
-    var cont = true;
-    var bpm = 10;
-    var duration = 1500;
+    var bpm = 5;
+
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var oscillator, gain;
+    
+    var setUpOscillator = function () {
+      oscillator = audioCtx.createOscillator();
+      gain = audioCtx.createGain();
+      oscillator.connect(gain);
+      gain.connect(audioCtx.destination)
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 100;
+      oscillator.start(audioCtx.currentTime);
+    };
+
+    var sweepAudio = function () {
+      oscillator.frequency.exponentialRampToValueAtTime(!!flip ? 100 : 600, audioCtx.currentTime + ((60 / bpm) / 2));
+    };
 
     var animateBall = function () {
       var height = $('#breathe').outerHeight();
@@ -23,12 +38,11 @@
       var direction = !flip ? 0 : (height - 25) + 'px';
       var options = {
         easing: 'ease-in-out',
-        duration: ((60 / bpm) / 2) * 1000
+        duration: ((60 / bpm) / 2) * 1000,
+        begin: sweepAudio
       };
 
-      if (cont) {
-        options.complete = animateBall;
-      }
+      options.complete = animateBall;
 
       $('#ball').velocity({
         translateY: direction
@@ -44,12 +58,17 @@
     setDurationText();
 
     $('#start').click(function () {
-      cont = true;
+      setUpOscillator();
       animateBall();
     });
 
     $('#stop').click(function () {
-      cont = false;
+      oscillator.stop();
+      $('#ball').velocity('stop', true).velocity({
+        translateY: 0
+      }, {
+        easing: 'spring',
+      });
     });
 
     $('#increase').click(function () {
