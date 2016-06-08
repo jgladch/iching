@@ -14,6 +14,7 @@
   $(document).ready(function () {
     var flip = true;
     var cont = true;
+    var bpm = 10;
     var duration = 1500;
 
     var animateBall = function () {
@@ -22,7 +23,7 @@
       var direction = !flip ? 0 : (height - 25) + 'px';
       var options = {
         easing: 'ease-in-out',
-        duration: duration
+        duration: ((60 / bpm) / 2) * 1000
       };
 
       if (cont) {
@@ -37,7 +38,7 @@
     };
 
     var setDurationText = function () {
-      $('text#rate').text(Math.ceil((60 / (duration / 1000) * 2)) + ' BPM');
+      $('text#rate').text(bpm + ' BPM');
     };
 
     setDurationText();
@@ -52,12 +53,12 @@
     });
 
     $('#increase').click(function () {
-      duration+=100;
+      bpm+=0.25
       setDurationText();
     });
 
     $('#decrease').click(function () {
-      duration-=100;
+      bpm-=0.25;
       setDurationText();
     });
 
