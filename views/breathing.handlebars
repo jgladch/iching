@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div id="breathe">
+    <div id="ball"></div>
+  </div>
+  <div id="breathe-buttons">
+    <button id="start" class="btn btn-sm btn-default">Start</button>
+    <button id="stop" class="btn btn-sm btn-default">Stop</button>
+    <button id="increase" class="btn btn-sm btn-default">Increase</button>
+    <button id="decrease" class="btn btn-sm btn-default">Decrease</button>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    var flip = true;
+    var cont = true;
+    var duration = 500;
+
+    var animateBall = function () {
+      var height = $('#breathe').outerHeight();
+
+      var direction = !flip ? 0 : (height - 25) + 'px';
+      var options = {
+        easing: 'ease-in-out',
+        duration: duration
+      };
+
+      if (cont) {
+        options.complete = animateBall;
+      }
+
+      $('#ball').velocity({
+        translateY: direction
+      }, options);
+
+      flip = !flip;
+    };
+
+    $('#start').click(function () {
+      cont = true;
+      animateBall();
+    });
+
+    $('#stop').click(function () {
+      cont = false;
+    });
+
+    $('#increase').click(function () {
+      duration+=1000;
+    });
+
+    $('#decrease').click(function () {
+      duration-=1000;
+    });
+
+  });
+</script>

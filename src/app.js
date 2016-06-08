@@ -21,6 +21,10 @@ app.get('/', (req, res, next) => {
   return res.render('index');
 });
 
+app.get('/breathing', (req, res, next) => {
+  return res.render('breathing');
+});
+
 const server = app.listen(app.get('port'), () => {
   return console.log(`Server listening on port ${server.address().port}`);
 });

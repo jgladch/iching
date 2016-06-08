@@ -72,3 +72,29 @@ body {
     }
   }
 }
+
+#breathe {
+  position: absolute;
+  top: 0;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  background-color: #FFFFFF;
+
+  #ball {
+    margin: 0 auto;
+    height: 25px;
+    width: 25px;
+    border-radius: 12px;
+    background-color: red;
+  }
+}
+
+#breathe-buttons {
+  position: absolute;
+  height: 30px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: gray;
+}
