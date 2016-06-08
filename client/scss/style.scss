@@ -1,7 +1,7 @@
 body {
   font-family: 'Overlock SC', cursive;
-  color: rgba(0, 0, 0, 0.65);
-  background-color: #FBFBFB;
+  color: #FFFFFF;
+  background-color: #000000;
 }
 
 .heading {
@@ -18,7 +18,7 @@ body {
     float: left;
     clear: none;
     position: relative;
-    bottom: 13px;
+    bottom: 40%;
   }
 
   .title {
@@ -53,23 +53,21 @@ body {
   }
 
   .yin {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: #FFFFFF;
 
     .center {
-      background-color: #FBFBFB;
       width: 0;
-      height: 32px;
+      height: 100%;
       margin: 0 auto;
     }
   }
 
   .yang {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: #FFFFFF;
 
     .center {
-      background-color: #FBFBFB;
       width: 0;
-      height: 32px;
+      height: 100%;
       margin: 0 auto;
     }
   }

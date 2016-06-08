@@ -382,22 +382,31 @@
       }
     };
 
+    var flip = true;
     $('.line').click(function () {
       var el = $(this);
       var isYang = el.hasClass('yang');
+      var direction;
 
       if (isYang) {
         el.removeClass('yang');
         el.addClass('yin');
         el.children().velocity({
+          translateX: 0,
+          width: 0
+        }, 10).velocity({
+          backgroundColor: '#000000',
           width: '25%'
         }, 'spring');
       } else {
         el.removeClass('yin');
         el.addClass('yang');
+        
         el.children().velocity({
-          width: 0
-        });
+          translateX: !!flip ? '-500%' : '500%',
+        }, 'ease-in-out');
+
+        flip = !flip;
       }
 
       var sequence = getCurrentSequence();
