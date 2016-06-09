@@ -10,10 +10,12 @@ body {
   color: #FFFFFF;
 
   .order {
-    font-size: 75px;
+    font-family: 'Delius', cursive;
+    font-size: 60px;
     float: left;
     clear: none;
-    position: relative;
+    position: absolute;
+    top: 0;
     bottom: 40%;
     margin-top: 5px;
   }
