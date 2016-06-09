@@ -107,3 +107,16 @@ body {
     padding-right: 5px;
   }
 }
+
+#arrows {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+}
+
+.glyph-arrows {
+  color: #FFFFFF;
+  font-size: 25px;
+}

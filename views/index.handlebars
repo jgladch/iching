@@ -29,10 +29,16 @@
       </div>
     </div>
   </div>
+  <div id="arrows">
+    <span id="left-arrow" class="glyphicon glyphicon-chevron-left pull-left glyph-arrows" aria-hidden="true"></span>
+    <span id="right-arrow" class="glyphicon glyphicon-chevron-right pull-right glyph-arrows" aria-hidden="true"></span>
+  </div>
 </div>
 
 <script>
   $(document).ready(function () {
+    jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
+    var currentHexagram;
     var hexagrams = [{
       "name": "Qian",
       "title": "Initiating",
@@ -355,6 +361,34 @@
       "sequence": [0, 1, 0, 1, 0, 1]
     }];
 
+    var changeOrderHeading = function (order) {
+      return $('.heading .order').velocity('transition.flipXOut', 200, function () {
+        $('.heading .order').text(order);
+      }).velocity('transition.flipXIn', 300);
+    };
+
+    var changeTitleHeading = function (title) {
+      return $('.heading .title').velocity({
+        translateX: 100,
+        opacity: 0
+      }, 200, function () {
+        $('.heading .title').text(title);
+      }).velocity('transition.slideRightIn', 300);
+    };
+
+    var changeSequence = function (sequence) {
+      return $('.hexagram').children().reverse().each(function (index, element) {
+        var el = $(element);
+        return changeLine(el, true, sequence[index]);
+      });
+    };
+
+    var matchHexagram = function (sequence) {
+      return _.find(hexagrams, function (hexagram) {
+        return _.isEqual(hexagram.sequence, sequence);
+      });
+    };
+
     var getCurrentSequence = function () {
       var sequence = $('.hexagram').children('.line').map(function () {
         return !!$(this).hasClass('yang') ? 1 : 0;
@@ -363,54 +397,103 @@
       return sequence;
     };
 
-    var getCurrentHexagram = function (sequence) {
-      var hexagram = _.find(hexagrams, function (hexagram) {
-        return _.isEqual(hexagram.sequence, sequence);
+    var changeCurrentHexagramInfo = function () {
+      currentHexagram = matchHexagram(getCurrentSequence());
+
+      changeOrderHeading(currentHexagram.order);
+      changeTitleHeading(currentHexagram.title);
+
+      return;
+    };
+
+    var shiftHexagrams = function (n) {
+      var index;
+
+      if (currentHexagram.order + n < 0) { // Handle edge cases of hexagram shifting
+        index = 64 + (currentHexagram.order + n);
+      } else if (currentHexagram.order + n > 64) {
+        index = currentHexagram.order + n - 64;
+      } else {
+        index = currentHexagram.order + n;
+      }
+
+      var nextHex = _.find(hexagrams, function (hexagram) {
+        return hexagram.order === index;
       });
 
-      if (!!hexagram) {
-        $('.heading .order').velocity('transition.flipXOut', 200, function () {
-          $('.heading .order').text(hexagram.order);
-        }).velocity('transition.flipXIn', 300);
+      changeSequence(nextHex.sequence);
+      changeCurrentHexagramInfo();
 
-        $('.heading .title').velocity({
-          translateX: 100,
-          opacity: 0
-        }, 200, function () {
-          $('.heading .title').text(hexagram.title);
-        }).velocity('transition.slideRightIn', 300);
-      }
+      return;
     };
 
     var flip = true;
-    $('.line').click(function () {
-      var el = $(this);
+    var changeLine = function (el, nextStateFlag, nextState) {
       var isYang = el.hasClass('yang');
       var direction;
 
-      if (isYang) {
-        el.removeClass('yang');
-        el.addClass('yin');
-        el.children().velocity({
-          translateX: 0,
-          width: 0
-        }, 10).velocity({
-          backgroundColor: '#000000',
-          width: '25%'
-        }, 'spring');
-      } else {
-        el.removeClass('yin');
-        el.addClass('yang');
-        
-        el.children().velocity({
-          translateX: !!flip ? '-500%' : '500%',
-        }, 'ease-in-out');
+      if (!nextStateFlag) { // If we aren't passing in a new state for the line, just flip it
+        if (isYang) {
+          el.removeClass('yang');
+          el.addClass('yin');
+          el.children().velocity({
+            translateX: 0,
+            width: 0
+          }, 10).velocity({
+            backgroundColor: '#000000',
+            width: '25%'
+          }, 'spring');
+        } else {
+          el.removeClass('yin');
+          el.addClass('yang');
+          
+          el.children().velocity({
+            translateX: !!flip ? '-500%' : '500%',
+          }, 'ease-in-out');
 
-        flip = !flip;
+          flip = !flip;
+        }
+      } else { // If we are passing in a new state, only flip it if necessary
+        if (isYang && nextState === 0) {
+          el.removeClass('yang');
+          el.addClass('yin');
+          el.children().velocity({
+            translateX: 0,
+            width: 0
+          }, 10).velocity({
+            backgroundColor: '#000000',
+            width: '25%'
+          }, 'spring');
+        } else if (!isYang && nextState === 1) {
+          el.removeClass('yin');
+          el.addClass('yang');
+          
+          el.children().velocity({
+            translateX: !!flip ? '-500%' : '500%',
+          }, 'ease-in-out');
+
+          flip = !flip;
+        }
       }
 
-      var sequence = getCurrentSequence();
-      return getCurrentHexagram(sequence);
+      currentHexagram = matchHexagram(getCurrentSequence());
+
+      return;
+    };
+
+    currentHexagram = matchHexagram(getCurrentSequence());
+
+    $('.line').click(function () {
+      changeLine($(this));
+      return changeCurrentHexagramInfo();
+    });
+
+    $('#left-arrow').click(function () {
+      return shiftHexagrams(-1);
+    });
+
+    $('#right-arrow').click(function () {
+      return shiftHexagrams(1);
     });
   });
 </script>
