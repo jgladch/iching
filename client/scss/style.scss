@@ -1,5 +1,6 @@
 body {
-  background-color: #000000;
+  background: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ),
+  url('/images/background.jpg');
 }
 
 .heading {
@@ -116,9 +117,9 @@ body {
   padding: 5px;
   width: 100%;
 
-  // #left-arrow {
-  //   float: left;
-  // }
+  #flip {
+    margin-left: 15px;
+  }
 
   // #right-arrow {
   //   float: right;

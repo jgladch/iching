@@ -32,8 +32,8 @@
   <div id="arrows">
     <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
-    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows" aria-hidden="true"></span>
-    <span id="flip" class="glyphicon glyphicon-sort glyph-arrows" aria-hidden="true"></span>
+    <span id="flip" class="glyphicon glyphicon-menu-hamburger pull-right glyph-arrows" aria-hidden="true"></span>
+    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows pull-right" aria-hidden="true"></span>
   </div>
 </div>
 <script src="/js/hexagrams.js"></script>
@@ -186,7 +186,9 @@
             width: 0
           }, 10).velocity({
             backgroundColor: '#000000',
-            width: '25%'
+            backgroundColorAlpha: 0.5,
+            width: '25%',
+            height: '100%'
           }, yangOptions);
         } else {
           el.removeClass('yin');
@@ -207,7 +209,9 @@
             width: 0
           }, 10).velocity({
             backgroundColor: '#000000',
-            width: '25%'
+            backgroundColorAlpha: 0.5,
+            width: '25%',
+            height: '100%'
           }, yangOptions);
         } else if (!isYang && nextState === 1) {
           el.removeClass('yin');
