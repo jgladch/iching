@@ -30,8 +30,9 @@
     </div>
   </div>
   <div id="arrows">
-    <span id="left-arrow" class="glyphicon glyphicon-chevron-left pull-left glyph-arrows" aria-hidden="true"></span>
-    <span id="right-arrow" class="glyphicon glyphicon-chevron-right pull-right glyph-arrows" aria-hidden="true"></span>
+    <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
+    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows" aria-hidden="true"></span>
+    <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
 
@@ -427,6 +428,10 @@
       return;
     };
 
+    var coinFlip = function () {
+      return Math.floor(Math.random() * 2);
+    };
+
     var flip = true;
     var changeLine = function (el, nextStateFlag, nextState) {
       var isYang = el.hasClass('yang');
@@ -494,6 +499,21 @@
 
     $('#right-arrow').click(function () {
       return shiftHexagrams(1);
+    });
+
+    $('#shuffle').click(function () {
+      var newSequence = [];
+
+      for (var i = 0; i < 6; i++) {
+        result = coinFlip() + coinFlip() + coinFlip();
+        newSequence.push(result >= 2 ? 1 : 0);
+      }
+
+      currentHexagram = matchHexagram(newSequence);
+      changeSequence(newSequence);
+      changeCurrentHexagramInfo();
+
+      return;
     });
   });
 </script>

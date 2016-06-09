@@ -114,6 +114,20 @@ body {
   left: 0;
   right: 0;
   padding: 5px;
+  width: 100%;
+
+  #left-arrow {
+    float: left;
+  }
+
+  #right-arrow {
+    float: right;
+  }
+
+  #shuffle {
+    position: absolute;
+    left: 49%;
+  }
 }
 
 .glyph-arrows {
