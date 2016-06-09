@@ -31,8 +31,9 @@
   </div>
   <div id="arrows">
     <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
-    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows" aria-hidden="true"></span>
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
+    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows" aria-hidden="true"></span>
+    <span id="flip" class="glyphicon glyphicon-sort glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
 <script src="/js/hexagrams.js"></script>
@@ -56,11 +57,32 @@
       }).velocity('transition.slideRightIn', 300);
     };
 
-    var changeSequence = function (sequence) {
+    var changeSequence = function (sequence, cb) {
       return $('.hexagram').children().reverse().each(function (index, element) {
         var el = $(element);
-        return changeLine(el, true, sequence[index]);
+        return index < 5 ? changeLine(el, true, sequence[index]) : changeLine(el, true, sequence[index], cb);
       });
+    };
+
+    var flipSequence = function () {
+      var lines = $('.hexagram').children().reverse();
+
+      return changeLine($(lines[0]), null, null, function () {
+        console.log('callback!');
+        return changeLine($(lines[1]), null, null, function () {
+          console.log('callback2!');
+          return changeLine($(lines[2]), null, null, function () {
+            return changeLine($(lines[3]), null, null, function () {
+              return changeLine($(lines[4]), null, null, function () {
+                return changeLine($(lines[5]), null, null, function () {
+                  console.log('done!');
+                })
+              })
+            });
+          })
+        });
+      });      
+
     };
 
     var matchHexagram = function (sequence) {
@@ -112,9 +134,23 @@
     };
 
     var flip = true;
-    var changeLine = function (el, nextStateFlag, nextState) {
+
+    var changeLine = function (el, nextStateFlag, nextState, cb) {
       var isYang = el.hasClass('yang');
       var direction;
+      
+      var yangOptions = {
+        easing: 'spring'
+      };
+
+      var yinOptions = {
+        easing: 'ease-in-out'
+      };
+
+      if (!!cb) {
+        yangOptions.complete = cb;
+        yinOptions.complete = cb;
+      }
 
       if (!nextStateFlag) { // If we aren't passing in a new state for the line, just flip it
         if (isYang) {
@@ -126,14 +162,14 @@
           }, 10).velocity({
             backgroundColor: '#000000',
             width: '25%'
-          }, 'spring');
+          }, yangOptions);
         } else {
           el.removeClass('yin');
           el.addClass('yang');
           
           el.children().velocity({
             translateX: !!flip ? '-500%' : '500%',
-          }, 'ease-in-out');
+          }, yinOptions);
 
           flip = !flip;
         }
@@ -147,14 +183,14 @@
           }, 10).velocity({
             backgroundColor: '#000000',
             width: '25%'
-          }, 'spring');
+          }, yangOptions);
         } else if (!isYang && nextState === 1) {
           el.removeClass('yin');
           el.addClass('yang');
           
           el.children().velocity({
             translateX: !!flip ? '-500%' : '500%',
-          }, 'ease-in-out');
+          }, yinOptions);
 
           flip = !flip;
         }
@@ -193,6 +229,11 @@
       changeCurrentHexagramInfo();
 
       return;
+    });
+
+    $('#flip').click(function () {
+      console.log('flipping');
+      flipSequence();
     });
   });
 </script>
