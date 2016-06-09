@@ -2,29 +2,33 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
       <div class="heading">
-        <div class="heading-container">
-          <text class="title">Initiating</text>
-          <text class="order">1</text>
-        </div>
+        <text class="title">Initiating</text>
+        <text class="order">1</text>
       </div>
       <div class="hexagram">
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
         <div class="line yang">
-          <div class="center">&nbsp;</div>
+          <div class="left">&nbsp;</div>
+          <div class="right">&nbsp;</div>
         </div>
       </div>
     </div>
@@ -179,46 +183,29 @@
 
       if (!nextStateFlag) { // If we aren't passing in a new state for the line, just flip it
         if (isYang) {
-          el.removeClass('yang');
-          el.addClass('yin');
+          el.removeClass('yang').addClass('yin');
           el.children().velocity({
-            translateX: 0,
-            width: 0
-          }, 10).velocity({
-            backgroundColor: '#000000',
-            backgroundColorAlpha: 0.5,
-            width: '25%',
-            height: '100%'
+            width: '30%'
           }, yangOptions);
         } else {
-          el.removeClass('yin');
-          el.addClass('yang');
-          
+          el.removeClass('yin').addClass('yang');
           el.children().velocity({
-            translateX: !!flip ? '-500%' : '500%',
+            width: '45%'
           }, yinOptions);
 
           flip = !flip;
         }
       } else { // If we are passing in a new state, only flip it if necessary
         if (isYang && nextState === 0) {
-          el.removeClass('yang');
-          el.addClass('yin');
+          el.removeClass('yang').addClass('yin');
           el.children().velocity({
-            translateX: 0,
-            width: 0
-          }, 10).velocity({
-            backgroundColor: '#000000',
-            backgroundColorAlpha: 0.5,
-            width: '25%',
-            height: '100%'
+            width: '30%'
           }, yangOptions);
         } else if (!isYang && nextState === 1) {
-          el.removeClass('yin');
-          el.addClass('yang');
+          el.removeClass('yin').addClass('yang');
           
           el.children().velocity({
-            translateX: !!flip ? '-500%' : '500%',
+            width: '45%'
           }, yinOptions);
 
           flip = !flip;

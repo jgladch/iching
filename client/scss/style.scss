@@ -6,14 +6,8 @@ body {
 .heading {
   height: 65px;
   width: 100%;
-
   font-family: 'Overlock SC', cursive;
   color: #FFFFFF;
-
-  .heading-container {
-    height: 100%;
-    width: 100%;
-  }
 
   .order {
     font-size: 75px;
@@ -21,6 +15,7 @@ body {
     clear: none;
     position: relative;
     bottom: 40%;
+    margin-top: 5px;
   }
 
   .title {
@@ -49,30 +44,22 @@ body {
     margin: 20px 5px;
   }
 
-  .divider {
-    height: 0;
-    margin: 30px;
-  }
-
-  .yin {
+  .left {
     background-color: #FFFFFF;
-
-    .center {
-      width: 0;
-      height: 102%;
-      margin: 0 auto;
-    }
+    width: 45%;
+    position: absolute;
+    height: 28px;
+    left: 20px;
   }
 
-  .yang {
+  .right {
     background-color: #FFFFFF;
-
-    .center {
-      width: 0;
-      height: 102%;
-      margin: 0 auto;
-    }
+    width: 45%;
+    position: absolute;
+    height: 28px;
+    right: 20px;
   }
+
 }
 
 #breathe {
