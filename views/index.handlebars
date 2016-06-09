@@ -42,19 +42,37 @@
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var currentHexagram;
 
-    var changeOrderHeading = function (order) {
-      return $('.heading .order').velocity('transition.flipXOut', 200, function () {
-        $('.heading .order').text(order);
-      }).velocity('transition.flipXIn', 300);
+    var changeOrderHeading = function (order, delay) {
+      var outOptions = {
+        duration: 200,
+        complete: function () {
+          return $('.heading .order').text(order);
+        }
+      };
+
+      if (!!delay) {
+        outOptions.delay = delay;
+      }
+
+      return $('.heading .order').velocity('transition.flipXOut', outOptions).velocity('transition.flipXIn', 300);
     };
 
-    var changeTitleHeading = function (title) {
+    var changeTitleHeading = function (title, delay) {
+      var outOptions = {
+        duration: 200,
+        complete: function () {
+          return $('.heading .title').text(title);
+        }
+      };
+
+      if (!!delay) {
+        outOptions.delay = delay;
+      }
+
       return $('.heading .title').velocity({
         translateX: 100,
         opacity: 0
-      }, 200, function () {
-        $('.heading .title').text(title);
-      }).velocity('transition.slideRightIn', 300);
+      }, outOptions).velocity('transition.slideRightIn', 300);
     };
 
     var changeSequence = function (sequence, cb) {
@@ -64,25 +82,24 @@
       });
     };
 
-    var flipSequence = function () {
+    var flipSequence = function (cb) {
+      var subroutine = function (index) {
+        if (index === 5) {
+          return toggleIndex(index, cb, 500);
+        } else {
+          return toggleIndex(index, function () {
+            return subroutine(index + 1);
+          }, index !== 0 ? 500 : 0);
+        }
+      };
+
+      return subroutine(0);
+    };
+
+    var toggleIndex = function (index, cb, delay) {
       var lines = $('.hexagram').children().reverse();
 
-      return changeLine($(lines[0]), null, null, function () {
-        console.log('callback!');
-        return changeLine($(lines[1]), null, null, function () {
-          console.log('callback2!');
-          return changeLine($(lines[2]), null, null, function () {
-            return changeLine($(lines[3]), null, null, function () {
-              return changeLine($(lines[4]), null, null, function () {
-                return changeLine($(lines[5]), null, null, function () {
-                  console.log('done!');
-                })
-              })
-            });
-          })
-        });
-      });      
-
+      changeLine($(lines[index]), null, null, cb, delay, true, 500);
     };
 
     var matchHexagram = function (sequence) {
@@ -99,11 +116,9 @@
       return sequence;
     };
 
-    var changeCurrentHexagramInfo = function () {
-      currentHexagram = matchHexagram(getCurrentSequence());
-
-      changeOrderHeading(currentHexagram.order);
-      changeTitleHeading(currentHexagram.title);
+    var changeCurrentHexagramInfo = function (delay) {
+      changeOrderHeading(currentHexagram.order, delay);
+      changeTitleHeading(currentHexagram.title, delay);
 
       return;
     };
@@ -135,7 +150,7 @@
 
     var flip = true;
 
-    var changeLine = function (el, nextStateFlag, nextState, cb) {
+    var changeLine = function (el, nextStateFlag, nextState, cb, delay, changeInfo, duration) {
       var isYang = el.hasClass('yang');
       var direction;
       
@@ -150,6 +165,16 @@
       if (!!cb) {
         yangOptions.complete = cb;
         yinOptions.complete = cb;
+      }
+
+      if (!!delay) {
+        yangOptions.delay = delay;
+        yinOptions.delay = delay;
+      }
+
+      if (!!duration) {
+        yangOptions.duration = duration;
+        yinOptions.duration = duration;
       }
 
       if (!nextStateFlag) { // If we aren't passing in a new state for the line, just flip it
@@ -198,14 +223,17 @@
 
       currentHexagram = matchHexagram(getCurrentSequence());
 
+      if (!!changeInfo) {
+        changeCurrentHexagramInfo(delay);
+      }
+
       return;
     };
 
     currentHexagram = matchHexagram(getCurrentSequence());
 
     $('.line').click(function () {
-      changeLine($(this));
-      return changeCurrentHexagramInfo();
+      return changeLine($(this), null, null, null, null, true);
     });
 
     $('#left-arrow').click(function () {
