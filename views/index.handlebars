@@ -45,6 +45,7 @@
   $(document).ready(function () {
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var currentHexagram;
+    var flip = true;
 
     var changeOrderHeading = function (order, delay) {
       var outOptions = {
@@ -96,20 +97,20 @@
       var subroutine = function (index) {
         if (index === 5) {
           return changeLine(index, false, {
-            duration: 500,
+            duration: 1000,
             delay: 500,
             complete: cb,
             changeInfo: true
           });
         } else {
           return changeLine(index, false, {
+            duration: 1000,
             delay: index !== 0 ? 500 : 0,
-            duration: 500,
             changeInfo: true,
             complete: function () {
               return subroutine(index + 1);
             }
-          })
+          });
         }
       };
 
@@ -123,11 +124,9 @@
     };
 
     var getCurrentSequence = function () {
-      var sequence = $('.hexagram').children('.line').map(function () {
+      return $('.hexagram').children('.line').map(function () {
         return !!$(this).hasClass('yang') ? 1 : 0;
       }).get().reverse();
-
-      return sequence;
     };
 
     var changeCurrentHexagramInfo = function (delay) {
@@ -162,7 +161,6 @@
       return Math.floor(Math.random() * 2);
     };
 
-    var flip = true;
 
     var changeLine = function (indexOrElement, newState, options) {
       options = options || {};
@@ -203,20 +201,20 @@
           if (flip) {
             el.children('.left').velocity({
               right: '96%'
-            }, yinOptions);
+            }, _.omit(yinOptions, 'complete'));
 
             el.children('.right').velocity({
               left: '20px',
-            }, _.omit(yinOptions, 'complete'));
+            }, yinOptions);
 
           } else {
             el.children('.right').velocity({
               left: '96%'
-            }, yinOptions);
+            }, _.omit(yinOptions, 'complete'));
 
             el.children('.left').velocity({
               right: '20px',
-            }, _.omit(yinOptions, 'complete'));
+            }, yinOptions);
           }
 
           flip = !flip;
@@ -244,7 +242,8 @@
 
     $('.line').click(function () {
       return changeLine($(this), false, {
-        changeInfo: true
+        changeInfo: true,
+        duration: 1000
       });
     });
 
