@@ -82,28 +82,38 @@
     var changeSequence = function (sequence, cb) {
       return $('.hexagram').children().reverse().each(function (index, element) {
         var el = $(element);
-        return index < 5 ? changeLine(el, true, sequence[index]) : changeLine(el, true, sequence[index], cb);
+        if (index < 5) {
+          return changeLine(el, sequence[index]);
+        } else {
+          return changeLine(el, sequence[index], {
+            complete: cb
+          });
+        }
       });
     };
 
     var flipSequence = function (cb) {
       var subroutine = function (index) {
         if (index === 5) {
-          return toggleIndex(index, cb, 500);
+          return changeLine(index, false, {
+            duration: 500,
+            delay: 500,
+            complete: cb,
+            changeInfo: true
+          });
         } else {
-          return toggleIndex(index, function () {
-            return subroutine(index + 1);
-          }, index !== 0 ? 500 : 0);
+          return changeLine(index, false, {
+            delay: index !== 0 ? 500 : 0,
+            duration: 500,
+            changeInfo: true,
+            complete: function () {
+              return subroutine(index + 1);
+            }
+          })
         }
       };
 
       return subroutine(0);
-    };
-
-    var toggleIndex = function (index, cb, delay) {
-      var lines = $('.hexagram').children().reverse();
-
-      changeLine($(lines[index]), null, null, cb, delay, true, 500);
     };
 
     var matchHexagram = function (sequence) {
@@ -154,68 +164,85 @@
 
     var flip = true;
 
-    var changeLine = function (el, nextStateFlag, nextState, cb, delay, changeInfo, duration) {
-      var isYang = el.hasClass('yang');
-      var direction;
-      
-      var yangOptions = {
+    var changeLine = function (indexOrElement, newState, options) {
+      options = options || {};
+      var el;
+
+      if (_.isNumber(indexOrElement)) {
+        el = $('.hexagram').children().reverse()[indexOrElement];
+      } else {
+        el = indexOrElement;
+      }
+
+      var yangOptions = _.extend({
         easing: 'spring'
-      };
+      }, options);
 
-      var yinOptions = {
-        easing: 'ease-in-out'
-      };
+      var yinOptions = _.extend({
+        easing: 'spring'
+      }, options);
 
-      if (!!cb) {
-        yangOptions.complete = cb;
-        yinOptions.complete = cb;
+      var needsToChange = function (el, next) {
+        var flag = el.hasClass('yang') ? 1 : 0;
+        return flag !== next;
       }
 
-      if (!!delay) {
-        yangOptions.delay = delay;
-        yinOptions.delay = delay;
-      }
-
-      if (!!duration) {
-        yangOptions.duration = duration;
-        yinOptions.duration = duration;
-      }
-
-      if (!nextStateFlag) { // If we aren't passing in a new state for the line, just flip it
-        if (isYang) {
+      var handleLine = function (el) {
+        el = $(el);
+        if (el.hasClass('yang')) {
           el.removeClass('yang').addClass('yin');
-          el.children().velocity({
-            width: '30%'
+          el.children('.left').velocity({
+            right: '66%'
           }, yangOptions);
+          el.children('.right').velocity({
+            left: '66%'
+          }, _.omit(yangOptions, 'complete'));
         } else {
           el.removeClass('yin').addClass('yang');
-          el.children().velocity({
-            width: '50%'
-          }, yinOptions);
+
+          if (flip) {
+            el.children('.left').velocity({
+              right: '96%'
+            }, yinOptions).velocity({
+              right: '49%'
+            }, 0);
+
+            el.children('.right').velocity({
+              left: '20px',
+            }, _.omit(yinOptions, 'complete')).velocity({
+              left: '49%',
+            }, 0);
+
+          } else {
+            el.children('.right').velocity({
+              left: '96%'
+            }, yinOptions).velocity({
+              left: '49%'
+            }, 0);
+
+            el.children('.left').velocity({
+              right: '20px',
+            }, _.omit(yinOptions, 'complete')).velocity({
+              right: '49%',
+            }, 0);
+          }
 
           flip = !flip;
         }
-      } else { // If we are passing in a new state, only flip it if necessary
-        if (isYang && nextState === 0) {
-          el.removeClass('yang').addClass('yin');
-          el.children().velocity({
-            width: '30%'
-          }, yangOptions);
-        } else if (!isYang && nextState === 1) {
-          el.removeClass('yin').addClass('yang');
-          
-          el.children().velocity({
-            width: '50%'
-          }, yinOptions);
+      };
 
-          flip = !flip;
+      if (_.isNumber(newState)) {
+        if (needsToChange(el, newState)) {
+          handleLine(el);
         }
+      } else { // toggle
+        handleLine(el);
       }
 
       currentHexagram = matchHexagram(getCurrentSequence());
 
-      if (!!changeInfo) {
-        changeCurrentHexagramInfo(delay);
+      if (options.changeInfo) {
+        changeCurrentHexagramInfo(options.delay);
       }
 
       return;
@@ -224,7 +251,9 @@
     currentHexagram = matchHexagram(getCurrentSequence());
 
     $('.line').click(function () {
-      return changeLine($(this), null, null, null, null, true);
+      return changeLine($(this), false, {
+        changeInfo: true
+      });
     });
 
     $('#left-arrow').click(function () {
@@ -251,7 +280,6 @@
     });
 
     $('#flip').click(function () {
-      console.log('flipping');
       flipSequence();
     });
   });

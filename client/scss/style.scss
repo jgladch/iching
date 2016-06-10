@@ -48,17 +48,17 @@ body {
 
   .left {
     background-color: #FFFFFF;
-    width: 50%;
     position: absolute;
     height: 28px;
     left: 20px;
+    right: 49%;
   }
 
   .right {
     background-color: #FFFFFF;
-    width: 50%;
     position: absolute;
     height: 28px;
+    left: 49%;
     right: 20px;
   }
 
