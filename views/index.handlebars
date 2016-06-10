@@ -84,10 +84,13 @@
       return $('.hexagram').children().reverse().each(function (index, element) {
         var el = $(element);
         if (index < 5) {
-          return changeLine(el, sequence[index]);
+          return changeLine(el, sequence[index], {
+            duration: 1000
+          });
         } else {
           return changeLine(el, sequence[index], {
-            complete: cb
+            complete: cb,
+            duration: 1000
           });
         }
       });
@@ -172,13 +175,18 @@
         el = indexOrElement;
       }
 
-      var yangOptions = _.extend({
+      var yangOptions = _.defaults(options, {
         easing: 'spring'
-      }, options);
+      });
 
-      var yinOptions = _.extend({
-        easing: 'spring'
-      }, options);
+      var yinOptions = _.defaults(options, {
+        easing: 'spring',
+        duration: 400
+      });
+
+      var fastYinOptions = _.extend(_.omit(yinOptions, ['complete', 'duration']), {
+        duration: yinOptions.duration / 2
+      });
 
       var needsToChange = function (el, next) {
         var flag = el.hasClass('yang') ? 1 : 0;
@@ -201,7 +209,7 @@
           if (flip) {
             el.children('.left').velocity({
               right: '96%'
-            }, _.omit(yinOptions, 'complete'));
+            }, fastYinOptions);
 
             el.children('.right').velocity({
               left: '20px',
@@ -210,7 +218,7 @@
           } else {
             el.children('.right').velocity({
               left: '96%'
-            }, _.omit(yinOptions, 'complete'));
+            }, fastYinOptions);
 
             el.children('.left').velocity({
               right: '20px',
