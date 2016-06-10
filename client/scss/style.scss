@@ -7,7 +7,7 @@ body {
   height: 65px;
   width: 100%;
   font-family: 'Overlock SC', cursive;
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.75);
 
   .order {
     font-family: 'Delius', cursive;
@@ -47,18 +47,18 @@ body {
   }
 
   .left {
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.75);
     position: absolute;
     height: 28px;
     left: 20px;
-    right: 49%;
+    right: 50%;
   }
 
   .right {
-    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.75);
     position: absolute;
     height: 28px;
-    left: 49%;
+    left: 50%;
     right: 20px;
   }
 
@@ -116,6 +116,6 @@ body {
 }
 
 .glyph-arrows {
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.75);
   font-size: 25px;
 }
