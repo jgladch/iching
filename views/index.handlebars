@@ -203,28 +203,20 @@
           if (flip) {
             el.children('.left').velocity({
               right: '96%'
-            }, yinOptions).velocity({
-              right: '49%'
-            }, 0);
+            }, yinOptions);
 
             el.children('.right').velocity({
               left: '20px',
-            }, _.omit(yinOptions, 'complete')).velocity({
-              left: '49%',
-            }, 0);
+            }, _.omit(yinOptions, 'complete'));
 
           } else {
             el.children('.right').velocity({
               left: '96%'
-            }, yinOptions).velocity({
-              left: '49%'
-            }, 0);
+            }, yinOptions);
 
             el.children('.left').velocity({
               right: '20px',
-            }, _.omit(yinOptions, 'complete')).velocity({
-              right: '49%',
-            }, 0);
+            }, _.omit(yinOptions, 'complete'));
           }
 
           flip = !flip;
