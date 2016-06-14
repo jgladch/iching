@@ -13,7 +13,8 @@ var hexagrams = [{
   "order": 2,
   "sequence": [0, 0, 0, 0, 0, 0],
   "commentary": {
-    "decision": "Responding.\n Sublimely prosperous and smooth.\n Favorable with a mare’s steadfastness.\n Superior person has somewhere to go.\n Predetermining, loses: Following, obtains a master.\n Favorable in the southwest: Gets friends.\n In the northeast: Lose friends.\n Be composed and content.\n Being steadfast and upright: good fortune."
+    "decision": "Responding.\n Sublimely prosperous and smooth.\n Favorable with a mare’s steadfastness.\n Superior person has somewhere to go.\n Predetermining, loses: Following, obtains a master.\n Favorable in the southwest: Gets friends.\n In the northeast: Lose friends.\n Be composed and content.\n Being steadfast and upright: good fortune.",
+    "decision_commentary": "Perfect is Responding’s greatness;\n It brings birth to all beings And accepts the source from Heaven.\n Responding in its richness sustains all beings;\n Its virtue is in harmony without limit.\n Its capacity is wide, its brightness is great.\n Through it, all beings attain their full development.\n A mare is a creature of earthly kind.\n Its moving on Earth is boundless, Yielding and submissive, advantageous and steadfast.\n The superior person comprehends her way of life:\n Taking the lead brings confusion,\n She loses the way.\n Following and responsive, She finds the normal course.\n Find friends in the southwest,\n Proceed with people of the same kind.\n Lose friends in the northeast,\n In the end congratulations will arrive.\n Good fortune comes from resting in steadfastness.\n It corresponds with the boundless capacity of Earth."
   }
 }, {
   "name": "Zhun",
@@ -21,7 +22,8 @@ var hexagrams = [{
   "order": 3,
   "sequence": [1, 0, 0, 0, 1, 0],
   "commentary": {
-    "decision": "Initiating.\n Sublime and initiative.\n Prosperous and smooth.\n Favorable and beneficial.\n Steadfast and upright."
+    "decision": "The beginning of a tiny sprout.\n Sublimely prosperous and smooth.\n Favorable to be steadfast and upright.\n Do not act lightly.\n There is somewhere to go.\n Favorable to establish feudal lords.",
+    "decision_commentary": "Beginning.\n The firm and the yielding united at the very beginning;\n Difficulties come into being.\n Movement in the midst of danger, Great prosperity and smoothness comes through steadfastness and uprightness.\n The action of thunder and rain Filled things up everywhere.\n At the beginning of creation, There was irregularity and disorder.\n It was favorable to establish feudal lords, But unstable conditions still might arise."
   }
 }, {
   "name": "Meng",
