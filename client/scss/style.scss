@@ -149,4 +149,32 @@ body {
 /* back, initially hidden pane */
 .back {
   transform: rotateY(180deg);
+  overflow-y: hidden;
+}
+
+#commentary {
+  margin-top: 25px;
+
+  #decision {
+    text-align: left;
+
+    text {
+      white-space: pre-line;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 16px;
+      line-height: 1;
+    }
+  }
+
+  #decision_commentary {
+    margin-top: 20px;
+    text-align: left;
+
+    text {
+      white-space: pre-line;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 16px;
+      line-height: 1;
+    }
+  }
 }

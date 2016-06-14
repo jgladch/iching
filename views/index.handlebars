@@ -36,8 +36,13 @@
             </div>
           </div>
           <div class="back">
-            <div class="commentary">
-              <text class="decision">This is the decision.</text>
+            <div id="commentary">
+              <div id="decision">
+                <text>This is the decision.</text>
+              </div>
+              <div id="decision_commentary">
+                <text>This is the decision commentary.</text>
+              </div>
             </div>
           </div>
         </div>
@@ -91,6 +96,18 @@
         translateX: 100,
         opacity: 0
       }, outOptions).velocity('transition.slideRightIn', 300);
+    };
+
+    var changeStudyInfo = function () {
+      if (!!currentHexagram.commentary.decision) {
+        $('#commentary #decision text').text(currentHexagram.commentary.decision);
+      }
+
+      if (!!currentHexagram.commentary.decision_commentary) {
+        $('#commentary #decision_commentary text').text(currentHexagram.commentary.decision_commentary);
+      }
+      
+      return;
     };
 
     var changeSequence = function (sequence, cb) {
@@ -148,6 +165,7 @@
     var changeCurrentHexagramInfo = function (delay) {
       changeOrderHeading(currentHexagram.order, delay);
       changeTitleHeading(currentHexagram.title, delay);
+      changeStudyInfo(currentHexagram.commentary);
 
       return;
     };
@@ -242,6 +260,23 @@
         }
       };
 
+      if (!showingHexagram) {
+        $('div.back').css('overflow-y', 'hidden');
+
+        $('.flipper').velocity({
+          rotateY: '0deg'
+        }, {
+          duration: 500,
+          complete: function () {
+            return changeLine(indexOrElement, newState, options);
+          }
+        });
+
+        showingHexagram = true;
+
+        return;
+      }
+
       if (_.isNumber(newState)) {
         if (needsToChange(el, newState)) {
           handleLine(el);
@@ -260,6 +295,7 @@
     };
 
     currentHexagram = matchHexagram(getCurrentSequence());
+    changeStudyInfo();
 
     $('.line').click(function () {
       return changeLine($(this), false, {
@@ -297,11 +333,26 @@
 
     $('#study').click(function () {
       var dir = !!showingHexagram ? '180deg' : '0deg';
+      var hexState = showingHexagram;
+
+      if (!hexState) {
+        $('div.back').css('overflow-y', 'hidden');
+      }
+      
+      $('.flipper').velocity({
+        rotateY: dir
+      }, {
+        duration: 1000,
+        complete: function () {
+          if (hexState) {
+            return $('div.back').css('overflow-y', 'scroll');
+          }
+        }
+      });
+      
       showingHexagram = !showingHexagram;
 
-      return $('.flipper').velocity({
-        rotateY: dir
-      }, 1000);
+      return;
     });
   });
 </script>
