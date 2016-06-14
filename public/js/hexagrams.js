@@ -6,7 +6,29 @@ var hexagrams = [{
   "commentary": {
     "decision": "Initiating.\n Sublime and initiative.\n Prosperous and smooth.\n Favorable and beneficial.\n Steadfast and upright.",
     "decision_commentary": "Vast indeed is the greatness of the Initiating.\n It is the source of all beings And regulates all creations under Heaven.\n Clouds flow and rain falls.\n All beings complete their forms.\n Greatly luminous, from beginning to end.\n Each of the six stages completes itself in its own time, As mounting on six dragons soaring in the sky.\n The way of the Initiating is change and transformation\n So that each being obtains its true nature and destiny\n And the union of great harmony is preserved.\n This is what is favorable and upright.\n The Initiating is high above all beings.\n And thus all countries are united in peace."
-  }
+  },
+  "lines": [{
+    "text": "Dragon lying low. \n Do not use.",
+    "commentary": "Dragon lying low, do not use,\n For the yang is in the lowest place."
+  }, {
+    "text": "Dragon becoming visible in the field.\n Favorable to see a great person.",
+    "commentary": "Dragon arising in the field.\n His virtue influences extensively."
+  }, {
+    "text": "The superior person --\n All day long, initiating, initiating.\n At night, keeping alert.\n Adversity, no fault.",
+    "commentary": "All day long, initiating, initiating.\n One is on the proper way over and over again."
+  }, {
+    "text": "Probably leaping from an abyss.\n No fault.",
+    "commentary": "Probably leaping from an abyss,\n In advance there will be no fault."
+  }, {
+    "text": "Dragon flying in the sky,\n Favorable to see a great person.",
+    "commentary": "Dragon flying in the sky,\n There arises a great person to be a leader."
+  }, {
+    "text": "Dragon becoming haughty.\n There is regret.",
+    "commentary": "Dragon becoming haughty, there is regret.\n A state of abundance cannot last long."
+  }, {
+    "text": "There appears a group of dragons without a chief.\n Good fortune.",
+    "commentary": "Following the virtue of Heaven,\n One should not appear as a chief."
+  }]
 }, {
   "name": "Kun",
   "title": "Responding",

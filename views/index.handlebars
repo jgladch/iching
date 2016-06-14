@@ -53,7 +53,42 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">
+                  <div id="line-wrapper">
+                    <div class="lines">
+                      <ol id="lines">
+                        <li class="line">
+                          <text class="text">Dragon lying low.</text>
+                          <text class="commentary">Dragon lying low. Do not use.</text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                        <li class="line">
+                          <text class="text"></text>
+                          <text class="commentary"></text>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
                 <div class="swiper-slide">Slide 3</div>
               </div>
               <!-- If we need pagination -->
@@ -120,6 +155,13 @@
 
       if (!!currentHexagram.commentary.decision_commentary) {
         $('#commentary #decision_commentary text').text(currentHexagram.commentary.decision_commentary);
+      }
+
+      if (!!currentHexagram.lines) {
+        $('ol#lines').children().each(function (index, element) {
+          $(element).children('.text').text(currentHexagram.lines[index].text);
+          $(element).children('.commentary').text(currentHexagram.lines[index].commentary);
+        });
       }
       
       return;

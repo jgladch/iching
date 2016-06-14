@@ -186,6 +186,36 @@ body {
   }
 }
 
+#line-wrapper {
+  overflow-y: scroll;
+  top: 0;
+  bottom: 25px;
+  position: absolute;
+}
+
+.lines {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+ol#lines {
+  padding-left: 25px;
+}
+
+li.line  {
+  text-align: left;
+  margin-top: 15px;
+
+  text {
+    display: block;
+    white-space: pre-line;
+  }
+
+  .commentary {
+    font-style: italic;
+    margin-top: 5px;
+  }
+}
+
 .swiper-container {
   height: 80vh;
 }
@@ -194,6 +224,10 @@ body {
   bottom: 0;
 }
 
-// .swiper-slide-active {
-//   overflow-y: scroll;
-// }
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgba(255, 255, 255, 0.75);
+}
