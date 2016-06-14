@@ -100,14 +100,14 @@
       var subroutine = function (index) {
         if (index === 5) {
           return changeLine(index, false, {
-            duration: 1000,
+            duration: 500,
             delay: 500,
             complete: cb,
             changeInfo: true
           });
         } else {
           return changeLine(index, false, {
-            duration: 1000,
+            duration: 500,
             delay: index !== 0 ? 500 : 0,
             changeInfo: true,
             complete: function () {

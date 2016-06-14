@@ -2,7 +2,8 @@ var hexagrams = [{
   "name": "Qian",
   "title": "Initiating",
   "order": 1,
-  "sequence": [1, 1, 1, 1, 1, 1]
+  "sequence": [1, 1, 1, 1, 1, 1],
+  "decision": 'Initiating.\n Sublime and initiative.\n Prosperous and smooth.\n Favorable and beneficial.\n Steadfast and upright.'
 }, {
   "name": "Kun",
   "title": "Responding",
