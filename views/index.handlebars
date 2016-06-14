@@ -5,30 +5,41 @@
         <text class="title">Initiating</text>
         <text class="order">1</text>
       </div>
-      <div class="hexagram">
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
-        </div>
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
-        </div>
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
-        </div>
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
-        </div>
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
-        </div>
-        <div class="line yang">
-          <div class="left">&nbsp;</div>
-          <div class="right">&nbsp;</div>
+      <div class="flip-container">
+        <div class="flipper">
+          <div class="front">
+            <div class="hexagram">
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+              <div class="line yang">
+                <div class="left">&nbsp;</div>
+                <div class="right">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+          <div class="back">
+            <div class="commentary">
+              <text class="decision">This is the decision.</text>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -36,8 +47,9 @@
   <div id="arrows">
     <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
+    <span id="study" class="glyphicon glyphicon-education pull-right glyph-arrows" aria-hidden="true"></span>
     <span id="flip" class="glyphicon glyphicon-menu-hamburger pull-right glyph-arrows" aria-hidden="true"></span>
-    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows pull-right" aria-hidden="true"></span>
+    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
 <script src="/js/hexagrams.js"></script>
@@ -46,6 +58,7 @@
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var currentHexagram;
     var flip = true;
+    var showingHexagram = true;
 
     var changeOrderHeading = function (order, delay) {
       var outOptions = {
@@ -208,20 +221,20 @@
 
           if (flip) {
             el.children('.left').velocity({
-              right: '96%'
+              right: '100%'
             }, fastYinOptions);
 
             el.children('.right').velocity({
-              left: '20px',
+              left: '0',
             }, yinOptions);
 
           } else {
             el.children('.right').velocity({
-              left: '96%'
+              left: '100%'
             }, fastYinOptions);
 
             el.children('.left').velocity({
-              right: '20px',
+              right: '0',
             }, yinOptions);
           }
 
@@ -279,7 +292,16 @@
     });
 
     $('#flip').click(function () {
-      flipSequence();
+      return flipSequence();
+    });
+
+    $('#study').click(function () {
+      var dir = !!showingHexagram ? '180deg' : '0deg';
+      showingHexagram = !showingHexagram;
+
+      return $('.flipper').velocity({
+        rotateY: dir
+      }, 1000);
     });
   });
 </script>
