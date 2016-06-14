@@ -36,13 +36,28 @@
             </div>
           </div>
           <div class="back">
-            <div id="commentary">
-              <div id="decision">
-                <text>This is the decision.</text>
+            <!-- Slider main container -->
+            <div class="swiper-container">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <div id="commentary-wrapper">
+                    <div id="commentary">
+                      <div id="decision">
+                        <text>This is the decision.</text>
+                      </div>
+                      <div id="decision_commentary">
+                        <text>This is the decision commentary.</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
               </div>
-              <div id="decision_commentary">
-                <text>This is the decision commentary.</text>
-              </div>
+              <!-- If we need pagination -->
+              <div class="swiper-pagination"></div>
             </div>
           </div>
         </div>
@@ -120,7 +135,8 @@
         } else {
           return changeLine(el, sequence[index], {
             complete: cb,
-            duration: 1000
+            duration: 1000,
+            changeInfo: true
           });
         }
       });
@@ -173,7 +189,7 @@
     var shiftHexagrams = function (n) {
       var index;
 
-      if (currentHexagram.order + n < 0) { // Handle edge cases of hexagram shifting
+      if (currentHexagram.order + n <= 0) { // Handle edge cases of hexagram shifting
         index = 64 + (currentHexagram.order + n);
       } else if (currentHexagram.order + n > 64) {
         index = currentHexagram.order + n - 64;
@@ -186,7 +202,6 @@
       });
 
       changeSequence(nextHex.sequence);
-      changeCurrentHexagramInfo();
 
       return;
     };
@@ -258,10 +273,14 @@
 
           flip = !flip;
         }
+
+        currentHexagram = matchHexagram(getCurrentSequence());
       };
 
       if (!showingHexagram) {
         $('div.back').css('overflow-y', 'hidden');
+
+        showingHexagram = true;
 
         $('.flipper').velocity({
           rotateY: '0deg'
@@ -271,8 +290,6 @@
             return changeLine(indexOrElement, newState, options);
           }
         });
-
-        showingHexagram = true;
 
         return;
       }
@@ -285,14 +302,20 @@
         handleLine(el);
       }
 
-      currentHexagram = matchHexagram(getCurrentSequence());
-
       if (options.changeInfo) {
         changeCurrentHexagramInfo(options.delay);
       }
 
       return;
     };
+
+    var swiper = new Swiper ('.swiper-container', {
+      direction: 'horizontal',
+      loop: true,
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      nested: true
+    });
 
     currentHexagram = matchHexagram(getCurrentSequence());
     changeStudyInfo();
@@ -322,7 +345,6 @@
 
       currentHexagram = matchHexagram(newSequence);
       changeSequence(newSequence);
-      changeCurrentHexagramInfo();
 
       return;
     });
