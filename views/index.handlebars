@@ -2,17 +2,20 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
       <div id="modal" class="hidden">
-        <text id="orientation">orientation:</text>
+        {{!-- <text id="orientation">orientation:</text>
         <text id="alpha">alpha: <span class="value">0</span></text>
         <text id="beta">beta: <span class="value">0</span></text>
         <text id="gamma">gamma: <span class="value">0</span></text>
-        <text id="absolute">absolute: <span class="value">0</span></text>
+        <text id="absolute">absolute: <span class="value">0</span></text> --}}
 
-        <text id="motion">motion:</text>
+        {{!-- <text id="motion">motion:</text>
         <text id="acceleration">acceleration: <span class="value">0</span></text>
         <text id="accelerationIncludingGravity">accelerationIncludingGravity: <span class="value">0</span></text>
         <text id="rotationRate">rotationRate: <span class="value">0</span></text>
-        <text id="interval">interval: <span class="value">0</span></text>
+        <text id="interval">interval: <span class="value">0</span></text> --}}
+
+        <text id="counter">counter:</text>
+        <text id="counter-value">0</text>
       </div>
       <div class="heading">
         <text class="title">Initiating</text>
@@ -443,6 +446,8 @@
       return flipSequence();
     });
 
+    var deviceMotionCounter = 0;
+
     var handleOrientationEvent = function (event) {
       console.log('orientation: ', event);
 
@@ -455,14 +460,26 @@
     };
 
     var handleDeviceMotionEvent = function (event) {
-      console.log('motion: ', event);
+      deviceMotionCounter += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
 
-      $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
-      $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
-      $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
-      $('#interval .value').text(event.interval);
+      // $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
+      // $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
+      // $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
+      // $('#interval .value').text(event.interval);
 
       return;
+    };
+
+    var toss = function () {
+      // window.addEventListener('deviceorientation', handleOrientationEvent);
+      window.addEventListener('devicemotion', handleDeviceMotionEvent);
+
+      window.setTimeout(function () {
+        // window.removeEventListener('deviceorientation', handleOrientationEvent);
+        window.removeEventListener('devicemotion', handleDeviceMotionEvent);
+        $('#counter-value').text(deviceMotionCounter);
+        deviceMotionCounter = 0;
+      }, 2000);
     };
 
     $('#toss').click(function () {
@@ -470,12 +487,8 @@
 
       if (modal.hasClass('hidden')) {
         $('#modal').removeClass('hidden');
-
-        window.addEventListener('deviceorientation', handleOrientationEvent);
-        window.addEventListener('devicemotion', handleDeviceMotionEvent);
+        toss();
       } else {
-        window.removeEventListener('deviceorientation', handleOrientationEvent);
-        window.removeEventListener('devicemotion', handleDeviceMotionEvent);
 
         $('#modal').addClass('hidden');
       }
