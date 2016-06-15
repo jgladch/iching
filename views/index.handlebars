@@ -2,20 +2,9 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
       <div id="modal" class="hidden">
-        {{!-- <text id="orientation">orientation:</text>
-        <text id="alpha">alpha: <span class="value">0</span></text>
-        <text id="beta">beta: <span class="value">0</span></text>
-        <text id="gamma">gamma: <span class="value">0</span></text>
-        <text id="absolute">absolute: <span class="value">0</span></text> --}}
-
-        {{!-- <text id="motion">motion:</text>
-        <text id="acceleration">acceleration: <span class="value">0</span></text>
-        <text id="accelerationIncludingGravity">accelerationIncludingGravity: <span class="value">0</span></text>
-        <text id="rotationRate">rotationRate: <span class="value">0</span></text>
-        <text id="interval">interval: <span class="value">0</span></text> --}}
-
-        <text id="counter">counter:</text>
-        <text id="counter-value">0</text>
+        <text id="counter-value-1">0</text>
+        <text id="counter-value-2">0</text>
+        <text id="counter-value-3">0</text>
       </div>
       <div class="heading">
         <text class="title">Initiating</text>
@@ -446,39 +435,30 @@
       return flipSequence();
     });
 
-    var deviceMotionCounter = 0;
-
-    var handleOrientationEvent = function (event) {
-      console.log('orientation: ', event);
-
-      $('#alpha .value').text(event.alpha);
-      $('#beta .value').text(event.beta);
-      $('#gamma .value').text(event.gamma);
-      $('#absolute .value').text(event.absolute);
-
-      return;
-    };
+    var deviceMotionCounter1 = 0;
+    var deviceMotionCounter2 = 0;
+    var deviceMotionCounter3 = 0;
 
     var handleDeviceMotionEvent = function (event) {
-      deviceMotionCounter += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
-
-      // $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
-      // $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
-      // $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
-      // $('#interval .value').text(event.interval);
+      deviceMotionCounter1 += event.acceleration.x + event.rotationRate.alpha;
+      deviceMotionCounter3 += event.acceleration.y + event.rotationRate.beta;
+      deviceMotionCounter2 += event.acceleration.z + event.rotationRate.gamma;
 
       return;
     };
 
     var toss = function () {
-      // window.addEventListener('deviceorientation', handleOrientationEvent);
       window.addEventListener('devicemotion', handleDeviceMotionEvent);
 
       window.setTimeout(function () {
-        // window.removeEventListener('deviceorientation', handleOrientationEvent);
         window.removeEventListener('devicemotion', handleDeviceMotionEvent);
-        $('#counter-value').text(deviceMotionCounter);
-        deviceMotionCounter = 0;
+        $('#counter-value-1').text(deviceMotionCounter1);
+        $('#counter-value-2').text(deviceMotionCounter2);
+        $('#counter-value-3').text(deviceMotionCounter3);
+        
+        deviceMotionCounter1 = 0;
+        deviceMotionCounter2 = 0;
+        deviceMotionCounter3 = 0;
       }, 2000);
     };
 
