@@ -2,9 +2,14 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
       <div id="modal" class="hidden">
-        <text id="counter-value-1">0</text>
-        <text id="counter-value-2">0</text>
-        <text id="counter-value-3">0</text>
+        <div class="result">
+          <text class="result"></text>
+          <text class="result"></text>
+          <text class="result"></text>
+          <text class="result"></text>
+          <text class="result"></text>
+          <text class="result"></text>
+        </div>
       </div>
       <div class="heading">
         <text class="title">Initiating</text>
@@ -435,14 +440,15 @@
       return flipSequence();
     });
 
-    var deviceMotionCounter1 = 0;
-    var deviceMotionCounter2 = 0;
-    var deviceMotionCounter3 = 0;
+    var counterSequence = [0, 0, 0, 0, 0, 0];
 
     var handleDeviceMotionEvent = function (event) {
-      deviceMotionCounter1 += event.acceleration.x + event.rotationRate.alpha;
-      deviceMotionCounter3 += event.acceleration.y + event.rotationRate.beta;
-      deviceMotionCounter2 += event.acceleration.z + event.rotationRate.gamma;
+      counterSequence[0] += event.acceleration.x;
+      counterSequence[1] += event.acceleration.y;
+      counterSequence[2] += event.acceleration.z;
+      counterSequence[3] += event.rotationRate.alpha;
+      counterSequence[4] += event.rotationRate.beta;
+      counterSequence[5] += event.rotationRate.gamma;
 
       return;
     };
@@ -452,13 +458,12 @@
 
       window.setTimeout(function () {
         window.removeEventListener('devicemotion', handleDeviceMotionEvent);
-        $('#counter-value-1').text(deviceMotionCounter1);
-        $('#counter-value-2').text(deviceMotionCounter2);
-        $('#counter-value-3').text(deviceMotionCounter3);
         
-        deviceMotionCounter1 = 0;
-        deviceMotionCounter2 = 0;
-        deviceMotionCounter3 = 0;
+        $('.result').children().reverse().each(function (index, el) {
+          $(el).text(counterSequence[index]);
+        });
+
+        counterSequence = [0, 0, 0, 0, 0, 0];
       }, 2000);
     };
 
