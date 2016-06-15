@@ -460,7 +460,7 @@
         window.removeEventListener('devicemotion', handleDeviceMotionEvent);
 
         counterSequence = counterSequence.map(function (item, index) {
-          return Math.round(item % 1);
+          return Math.round(Math.abs(item) % 1);
         });
         
         $('.result').children().reverse().each(function (index, el) {
