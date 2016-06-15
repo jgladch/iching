@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
-      <div id="modal" class="hidden">
+      {{!-- <div id="modal" class="hidden">
         <div class="result">
           <text class="result"></text>
           <text class="result"></text>
@@ -10,7 +10,7 @@
           <text class="result"></text>
           <text class="result"></text>
         </div>
-      </div>
+      </div> --}}
       <div class="heading">
         <text class="title">Initiating</text>
         <text class="order">1</text>
@@ -467,21 +467,12 @@
           $(el).text(counterSequence[index]);
         });
 
+        changeSequence(counterSequence);
+
         counterSequence = [0, 0, 0, 0, 0, 0];
       }, 2000);
     };
 
-    $('#toss').click(function () {
-      var modal = $('#modal');
-
-      if (modal.hasClass('hidden')) {
-        $('#modal').removeClass('hidden');
-        toss();
-      } else {
-
-        $('#modal').addClass('hidden');
-      }
-
-    });
+    $('#toss').click(toss);
   });
 </script>
