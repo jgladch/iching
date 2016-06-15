@@ -1,6 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
+      <div id="modal" class="hidden">
+        <text id="orientation">orientation:</text>
+        <text id="alpha">alpha: <span class="value">0</span></text>
+        <text id="beta">beta: <span class="value">0</span></text>
+        <text id="gamma">gamma: <span class="value">0</span></text>
+        <text id="absolute">absolute: <span class="value">0</span></text>
+
+        <text id="motion">motion:</text>
+        <text id="acceleration">acceleration: <span class="value">0</span></text>
+        <text id="accelerationIncludingGravity">accelerationIncludingGravity: <span class="value">0</span></text>
+        <text id="rotationRate">rotationRate: <span class="value">0</span></text>
+        <text id="interval">interval: <span class="value">0</span></text>
+      </div>
       <div class="heading">
         <text class="title">Initiating</text>
         <text class="order">1</text>
@@ -121,7 +134,8 @@
     <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
     <span id="flip" class="glyphicon glyphicon-menu-hamburger pull-right glyph-arrows" aria-hidden="true"></span>
-    <span id="shuffle" class="glyphicon glyphicon-repeat glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
+    <span id="shuffle" class="glyphicon glyphicon-random glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
+    <span id="toss" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
 <script src="/js/hexagrams.js"></script>
@@ -427,6 +441,32 @@
 
     $('#flip').click(function () {
       return flipSequence();
+    });
+
+    $('#toss').click(function () {
+      $('#modal').removeClass('hidden');
+
+      window.addEventListener('deviceorientation', function (event) {
+        console.log('orientation: ', event);
+
+        $('#alpha .value').text(event.alpha);
+        $('#beta .value').text(event.beta);
+        $('#gamma .value').text(event.gamma);
+        $('#absolute .value').text(event.absolute);
+
+        return;
+      });
+
+      window.addEventListener('devicemotion', function(event) {
+        console.log('motion: ', event);
+
+        $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
+        $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
+        $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
+        $('#interval .value').text(event.interval);
+
+        return;
+      });
     });
   });
 </script>

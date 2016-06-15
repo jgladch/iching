@@ -150,7 +150,7 @@ body {
   padding: 5px;
   width: 100%;
 
-  #flip, #study {
+  #flip, #shuffle {
     margin-left: 25px;
   }
 }
@@ -243,4 +243,15 @@ li.line  {
 
 .swiper-pagination-bullet-active {
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+#modal {
+  position: absolute;
+  top: 0;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  z-index: 13;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
