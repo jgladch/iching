@@ -443,30 +443,43 @@
       return flipSequence();
     });
 
+    var handleOrientationEvent = function (event) {
+      console.log('orientation: ', event);
+
+      $('#alpha .value').text(event.alpha);
+      $('#beta .value').text(event.beta);
+      $('#gamma .value').text(event.gamma);
+      $('#absolute .value').text(event.absolute);
+
+      return;
+    };
+
+    var handleDeviceMotionEvent = function (event) {
+      console.log('motion: ', event);
+
+      $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
+      $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
+      $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
+      $('#interval .value').text(event.interval);
+
+      return;
+    };
+
     $('#toss').click(function () {
-      $('#modal').removeClass('hidden');
+      var modal = $('#modal');
 
-      window.addEventListener('deviceorientation', function (event) {
-        console.log('orientation: ', event);
+      if (modal.hasClass('hidden')) {
+        $('#modal').removeClass('hidden');
 
-        $('#alpha .value').text(event.alpha);
-        $('#beta .value').text(event.beta);
-        $('#gamma .value').text(event.gamma);
-        $('#absolute .value').text(event.absolute);
+        window.addEventListener('deviceorientation', handleOrientationEvent);
+        window.addEventListener('devicemotion', handleDeviceMotionEvent);
+      } else {
+        window.removeEventListener('deviceorientation', handleOrientationEvent);
+        window.removeEventListener('devicemotion', handleDeviceMotionEvent);
 
-        return;
-      });
+        $('#modal').addClass('hidden');
+      }
 
-      window.addEventListener('devicemotion', function(event) {
-        console.log('motion: ', event);
-
-        $('#acceleration .value').text(event.acceleration.x + ', ' + event.acceleration.y + ', ' + event.acceleration.z);
-        $('#accelerationIncludingGravity .value').text(event.accelerationIncludingGravity.x + ', ' + event.accelerationIncludingGravity.y + ', ' + event.accelerationIncludingGravity.z);
-        $('#rotationRate .value').text(event.rotationRate.alpha + ', ' + event.rotationRate.beta + ', ' + event.rotationRate.gamma);
-        $('#interval .value').text(event.interval);
-
-        return;
-      });
     });
   });
 </script>
