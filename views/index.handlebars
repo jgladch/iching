@@ -458,6 +458,10 @@
 
       window.setTimeout(function () {
         window.removeEventListener('devicemotion', handleDeviceMotionEvent);
+
+        counterSequence = counterSequence.map(function (item, index) {
+          return Math.round(item % 1);
+        });
         
         $('.result').children().reverse().each(function (index, el) {
           $(el).text(counterSequence[index]);
