@@ -12,21 +12,18 @@ body {
   .order {
     font-family: 'Delius', cursive;
     font-size: 60px;
-    float: left;
-    clear: none;
     position: absolute;
-    top: 0;
-    bottom: 40%;
-    margin-top: 5px;
+    top: 7px;
+    left: 10px;
   }
 
   .title {
     font-size: 30px;
     float: right;
     clear: none;
-    position: relative;
-    right: 3px;
-    top: 34px;
+    position: absolute;
+    right: 10px;
+    top: 40px;
     opacity: 1;
     transform: translateX(0px);
     display: block;
@@ -35,9 +32,54 @@ body {
 
 #main-container {
   overflow: hidden;
+  padding: 0;
 }
 
-.hexagram {
+#hex-icon {
+  width: 44px;
+  height: 25px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 9px;
+
+  .hex-icon-line {
+    height: 3px;
+    margin: 2px 0;
+  }
+
+  .yang > .hex-icon-line-left {
+    right: 27px;
+  }
+
+  .yin > .hex-icon-line-left {
+    right: 30px;
+  }
+
+  .yang > .hex-icon-line-right {
+    left: 17px;
+  }
+
+  .yin > .hex-icon-line-right {
+    left: 21px;
+  }
+
+  .hex-icon-line-left {
+    background-color: rgba(255, 255, 255, 0.75);
+    position: absolute;
+    height: 2px;
+    left: 0px;
+  }
+
+  .hex-icon-line-right {
+    background-color: rgba(255, 255, 255, 0.75);
+    position: absolute;
+    height: 2px;
+    right: 10px;
+  }
+}
+
+#hexagram {
   width: 100%;
   margin: 0 auto;
 
@@ -51,7 +93,7 @@ body {
     background-color: rgba(255, 255, 255, 0.75);
     position: absolute;
     height: 28px;
-    left: 0;
+    left: 10px;
     right: 50%;
   }
 
@@ -60,7 +102,7 @@ body {
     position: absolute;
     height: 28px;
     left: 50%;
-    right: 0;
+    right: 10px;
   }
 
 }
@@ -117,78 +159,47 @@ body {
   font-size: 25px;
 }
 
-.flip-container {
-  perspective: 1000;
-  margin-top: 5px;
-}
-
-.flipper {
-  transform-style: preserve-3d;
-}
-
-.flip-container, .front, .back {
-  overflow: hidden;
-  width: 100%;
-  height: 80vh;
-  backface-visibility: hidden;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-}
-
-/* front pane, placed above back */
-.front {
-  z-index: 2;
-}
-
-/* back, initially hidden pane */
-.back {
-  transform: rotateY(180deg);
-  overflow-y: hidden;
-}
-
 #commentary-wrapper {
   overflow-y: scroll;
-  top: 0;
+  top: 10px;
+  left: 10px;
   bottom: 25px;
   position: absolute;
-}
 
-#commentary {
-  margin-top: 10px;
+  #commentary {
+    margin-top: 10px;
 
-  #decision {
-    text-align: left;
+    #decision {
+      text-align: left;
 
-    text {
-      white-space: pre-line;
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 16px;
-      line-height: 1;
+      text {
+        white-space: pre-line;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 16px;
+        line-height: 1;
+      }
+    }
+
+    #decision_commentary {
+      margin-top: 20px;
+      text-align: left;
+
+      text {
+        white-space: pre-line;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 16px;
+        line-height: 1;
+      }
     }
   }
-
-  #decision_commentary {
-    margin-top: 20px;
-    text-align: left;
-
-    text {
-      white-space: pre-line;
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 16px;
-      line-height: 1;
-    }
-  }
 }
+
 
 #line-wrapper {
   overflow-y: scroll;
-  top: 0;
+  right: 5px;
+  top: 5px;
+  left: 5px;
   bottom: 25px;
   position: absolute;
 }
@@ -217,7 +228,8 @@ li.line  {
 }
 
 .swiper-container {
-  height: 80vh;
+  height: 87vh;
+  margin-top: 5px;
 }
 
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
