@@ -1,6 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
+      <div id="shakeModal">
+        <img src="/images/shake-white.png" alt="">
+        <text>Shake your phone</text>
+        <text id="countdown">6</text>
+      </div>
       <div class="heading">
         <text class="title">Initiating</text>
         <text class="order">1</text>
@@ -388,6 +393,7 @@
 
     var result = 0;
     var deviceMotionSupport = false;
+    var countdown = 6;
 
     var testForDeviceMotionSupport = function () {
       window.addEventListener('devicemotion', checkMotionEventSupport);
@@ -410,6 +416,23 @@
       result += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
 
       return;
+    };
+
+    var handleCountdown = function (index) {
+      var counter = $('#countdown');
+      var current = counter.text();
+      
+      var map = {
+        0: 6,
+        1: 5,
+        2: 4,
+        3: 3,
+        4: 2,
+        5: 1,
+        6: 0
+      };
+
+      return counter.text(map[index]);
     };
 
     var cast = function (cb) {
@@ -437,6 +460,7 @@
         }
 
         cast(function (result) {
+          handleCountdown(index);
           sequence.push(result);
 
           return subroutine(index + 1);
@@ -492,8 +516,25 @@
     });
 
     $('#cast').click(function () {
-      deviceMotionSequence(function (sequence) {
-        changeSequence(sequence);
+      var modal = $('#shakeModal');
+      modal.velocity({
+        opacity: 1
+      }, {
+        duration: 300,
+        easing: 'easeInSine',
+        complete: function () {
+          deviceMotionSequence(function (sequence) {
+            modal.velocity({
+              opacity: 0
+            }, {
+              duration: 300,
+              easing: 'easeOutSine',
+              complete: function () {
+                changeSequence(sequence);
+              }
+            });
+          });
+        }
       });
     });
   });
