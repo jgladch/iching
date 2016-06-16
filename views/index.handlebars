@@ -386,8 +386,69 @@
       nested: true
     });
 
+    var result = 0;
+    var deviceMotionSupport = false;
+
+    var testForDeviceMotionSupport = function () {
+      window.addEventListener('devicemotion', checkMotionEventSupport);
+      window.setTimeout(function () {
+        window.removeEventListener('devicemotion', checkMotionEventSupport);
+      }, 300);
+    };
+
+    var checkMotionEventSupport = function (event) {
+      if (event && event.acceleration.x !== null && event.acceleration.y !== null && event.acceleration.z !== null && event.rotationRate.alpha !== null && event.rotationRate.beta !== null && event.rotationRate.gamma !== null) {
+        deviceMotionSupport = true;
+      } else {
+        deviceMotionSupport = false;
+      }
+
+      return;
+    };
+
+    var handleDeviceMotionEvent = function (event) {
+      result += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
+
+      return;
+    };
+
+    var cast = function (cb) {
+      if (deviceMotionSupport) {
+        window.addEventListener('devicemotion', handleDeviceMotionEvent);
+        window.setTimeout(function () {
+          window.removeEventListener('devicemotion', handleDeviceMotionEvent);
+            cb(Math.round(result) % 2);
+            result = 0;
+        }, 1000);
+      } else {
+        window.setTimeout(function () {
+          cb(Math.round(Math.random() * 100) % 2);
+        }, 1000);
+      }
+    };
+
+    var deviceMotionSequence = function (cb) {
+      var sequence = [];
+
+      var subroutine = function (index) {
+        if (index === 6) {
+          cb(sequence);
+          return;
+        }
+
+        cast(function (result) {
+          sequence.push(result);
+
+          return subroutine(index + 1);
+        });
+      };
+
+      return subroutine(0);
+    };
+
     currentHexagram = matchHexagram(getCurrentSequence());
     changeStudyInfo();
+    testForDeviceMotionSupport();
 
     $('body').keydown(function(e){
       if ((e.keyCode || e.which) === 37) { // left arrow
@@ -429,75 +490,6 @@
     $('#flip').click(function () {
       return flipSequence();
     });
-
-    var result = 0;
-    var deviceMotionSupport = false;
-
-    var testForDeviceMotionSupport = function () {
-      window.addEventListener('devicemotion', checkMotionEventSupport);
-      window.setTimeout(function () {
-        window.removeEventListener('devicemotion', checkMotionEventSupport);
-      }, 300);
-    };
-
-    var checkMotionEventSupport = function (event) {
-      console.log('event: ', event);
-      if (event && event.acceleration.x !== null && event.acceleration.y !== null && event.acceleration.z !== null && event.rotationRate.alpha !== null && event.rotationRate.beta !== null && event.rotationRate.gamma !== null) {
-        $('body').css({
-          'background': 'blue'
-        });
-        deviceMotionSupport = true;
-      } else {
-        $('body').css({
-          'background': 'red'
-        });
-        deviceMotionSupport = false;
-      }
-
-      return;
-    };
-
-    var handleDeviceMotionEvent = function (event) {
-      result += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
-
-      return;
-    };
-
-    var cast = function (cb) {
-      if (deviceMotionSupport) {
-        window.addEventListener('devicemotion', handleDeviceMotionEvent);
-        window.setTimeout(function () {
-          window.removeEventListener('devicemotion', handleDeviceMotionEvent);
-            cb(Math.round(result) % 2);
-            result = 0;
-        }, 1000);
-      } else {
-        window.setTimeout(function () {
-          cb(Math.round(Math.random() * 100) % 2);
-        }, 1000);
-      }
-    };
-
-    testForDeviceMotionSupport();
-
-    var deviceMotionSequence = function (cb) {
-      var sequence = [];
-
-      var subroutine = function (index) {
-        if (index === 6) {
-          cb(sequence);
-          return;
-        }
-
-        cast(function (result) {
-          sequence.push(result);
-
-          return subroutine(index + 1);
-        });
-      };
-
-      return subroutine(0);
-    };
 
     $('#cast').click(function () {
       deviceMotionSequence(function (sequence) {
