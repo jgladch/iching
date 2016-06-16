@@ -1,16 +1,6 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
-      {{!-- <div id="modal" class="hidden">
-        <div class="result">
-          <text class="result"></text>
-          <text class="result"></text>
-          <text class="result"></text>
-          <text class="result"></text>
-          <text class="result"></text>
-          <text class="result"></text>
-        </div>
-      </div> --}}
       <div class="heading">
         <text class="title">Initiating</text>
         <text class="order">1</text>
@@ -76,10 +66,10 @@
             <div id="commentary-wrapper">
               <div id="commentary">
                 <div id="decision">
-                  <text>This is the decision.</text>
+                  <text></text>
                 </div>
                 <div id="decision_commentary">
-                  <text>This is the decision commentary.</text>
+                  <text></text>
                 </div>
               </div>
             </div>
@@ -89,8 +79,8 @@
               <div class="lines">
                 <ol id="lines">
                   <li class="line">
-                    <text class="text">Dragon lying low.</text>
-                    <text class="commentary">Dragon lying low. Do not use.</text>
+                    <text class="text"></text>
+                    <text class="commentary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
@@ -132,7 +122,7 @@
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
     <span id="flip" class="glyphicon glyphicon-menu-hamburger pull-right glyph-arrows" aria-hidden="true"></span>
     <span id="shuffle" class="glyphicon glyphicon-random glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
-    <span id="toss" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
+    <span id="cast" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
 <script src="/js/hexagrams.js"></script>
@@ -440,39 +430,74 @@
       return flipSequence();
     });
 
-    var counterSequence = [0, 0, 0, 0, 0, 0];
+    var result = 0;
+    var deviceMotionSupport = false;
 
-    var handleDeviceMotionEvent = function (event) {
-      counterSequence[0] += event.acceleration.x;
-      counterSequence[1] += event.acceleration.y;
-      counterSequence[2] += event.acceleration.z;
-      counterSequence[3] += event.rotationRate.alpha;
-      counterSequence[4] += event.rotationRate.beta;
-      counterSequence[5] += event.rotationRate.gamma;
+    var testForDeviceMotionSupport = function () {
+      window.addEventListener('devicemotion', checkMotionEventSupport);
+      window.setTimeout(function () {
+        window.removeEventListener('devicemotion', checkMotionEventSupport);
+          cb(Math.round(result) % 2);
+          result = 0;
+      }, 1000);
+    };
+
+    var checkMotionEventSupport = function (event) {
+      if (event && event.acceleration.x !== null && event.acceleration.y !== null && event.acceleration.z !== null && event.rotationRate.alpha !== null && event.rotationRate.beta !== null && event.rotationRate.gamma !== null) {
+        deviceMotionSupport = true;
+      } else {
+        deviceMotionSupport = false;
+      }
 
       return;
     };
 
-    var toss = function () {
-      window.addEventListener('devicemotion', handleDeviceMotionEvent);
+    var handleDeviceMotionEvent = function (event) {
+      result += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
 
-      window.setTimeout(function () {
-        window.removeEventListener('devicemotion', handleDeviceMotionEvent);
-
-        counterSequence = counterSequence.map(function (item, index) {
-          return Math.round(Math.abs(item) % 1);
-        });
-        
-        $('.result').children().reverse().each(function (index, el) {
-          $(el).text(counterSequence[index]);
-        });
-
-        changeSequence(counterSequence);
-
-        counterSequence = [0, 0, 0, 0, 0, 0];
-      }, 2000);
+      return;
     };
 
-    $('#toss').click(toss);
+    var cast = function (cb) {
+      if (deviceMotionSupport) {
+        window.addEventListener('devicemotion', handleDeviceMotionEvent);
+        window.setTimeout(function () {
+          window.removeEventListener('devicemotion', handleDeviceMotionEvent);
+            cb(Math.round(result) % 2);
+            result = 0;
+        }, 1000);
+      } else {
+        window.setTimeout(function () {
+          cb(Math.round(Math.random() * 100) % 2);
+        }, 1000);
+      }
+    };
+
+    checkMotionEventSupport();
+
+    var deviceMotionSequence = function (cb) {
+      var sequence = [];
+
+      var subroutine = function (index) {
+        if (index === 6) {
+          cb(sequence);
+          return;
+        }
+
+        cast(function (result) {
+          sequence.push(result);
+
+          return subroutine(index + 1);
+        });
+      };
+
+      return subroutine(0);
+    };
+
+    $('#cast').click(function () {
+      deviceMotionSequence(function (sequence) {
+        changeSequence(sequence);
+      });
+    });
   });
 </script>
