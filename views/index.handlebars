@@ -437,15 +437,20 @@
       window.addEventListener('devicemotion', checkMotionEventSupport);
       window.setTimeout(function () {
         window.removeEventListener('devicemotion', checkMotionEventSupport);
-          cb(Math.round(result) % 2);
-          result = 0;
-      }, 1000);
+      }, 300);
     };
 
     var checkMotionEventSupport = function (event) {
+      console.log('event: ', event);
       if (event && event.acceleration.x !== null && event.acceleration.y !== null && event.acceleration.z !== null && event.rotationRate.alpha !== null && event.rotationRate.beta !== null && event.rotationRate.gamma !== null) {
+        $('body').css({
+          'background': 'blue'
+        });
         deviceMotionSupport = true;
       } else {
+        $('body').css({
+          'background': 'red'
+        });
         deviceMotionSupport = false;
       }
 
@@ -473,7 +478,7 @@
       }
     };
 
-    checkMotionEventSupport();
+    testForDeviceMotionSupport();
 
     var deviceMotionSequence = function (cb) {
       var sequence = [];
