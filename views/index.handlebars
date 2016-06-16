@@ -130,10 +130,10 @@
     <span id="cast" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
   </div>
 </div>
-<script src="/js/hexagrams.js"></script>
 <script>
   $(document).ready(function () {
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
+    var hexagrams = {{{json hexagrams}}};
     var currentHexagram;
     var flip = true;
 

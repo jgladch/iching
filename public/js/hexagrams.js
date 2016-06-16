@@ -1,4 +1,4 @@
-var hexagrams = [{
+var hexagrams = module.exports = [{
   "name": "Qian",
   "title": "Initiating",
   "order": 1,

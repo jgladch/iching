@@ -1,12 +1,17 @@
 import express from 'express';
 import exphbs from 'express-handlebars';
 import path from 'path';
+import hexagrams from '../bin/hexagrams.json';
 
 const app = express();
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
-  // partialsDir: ['views/partials'],
+  helpers: {
+    json: function (obj) {
+      return JSON.stringify(obj, null, " ");
+    }
+  }
 }));
 
 app.set('views', path.join(__dirname, '../', 'views'));
@@ -19,6 +24,7 @@ app.set('port', process.env.PORT || 3030);
 
 app.get('/', (req, res, next) => {
   return res.render('index', {
+    hexagrams: hexagrams,
     breathing: false
   });
 });
