@@ -30,6 +30,19 @@ body {
   }
 }
 
+.heading-list {
+  height: 90px;
+  width: 100%;
+  font-family: 'Overlock SC', cursive;
+  color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(95, 95, 95, 0.75);
+
+  .hex-swiper-2 {
+    margin-top: 40px;
+  }
+}
+
+
 #main-container {
   overflow: hidden;
   padding: 0;
@@ -104,8 +117,61 @@ body {
     left: 50%;
     right: 10px;
   }
-
 }
+
+.comparison-body {
+
+  .hex-row {
+    margin: 0 auto;
+
+    .hex-side {
+      display: inline-block;
+      width: 49%;
+    }
+
+    .info-side {
+      display: inline-block;
+      width: 49%;
+    }
+  }
+
+
+  .hex-icon-compare {
+    color: white;
+    background: black;
+    width: 185px;
+    height: 185px;
+
+    .line {
+      height: 8px;
+      margin-top: 25px;
+
+      .right {
+        background-color: white;
+        float: right;
+      }
+
+      .left {
+        background-color: white;
+        float: left;
+      }
+    }
+
+    .line.yang {
+      .right, .left {
+        width: 50%;
+      }
+    }
+
+    .line.yin {
+      .right, .left {
+        width: 33%;
+      }
+    }
+  }
+  
+}
+
 
 #breathe {
   position: absolute;
@@ -150,8 +216,8 @@ body {
   padding: 5px;
   width: 100%;
 
-  #flip, #shuffle {
-    margin-left: 25px;
+  #flip, #shuffle, #cast {
+    margin-left: 15px;
   }
 }
 

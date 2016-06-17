@@ -9,8 +9,21 @@ const app = express();
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   helpers: {
-    json: function (obj) {
+    json: (obj) => {
       return JSON.stringify(obj, null, " ");
+    },
+    eachReverse: (context, options) => {
+      let ret = '';
+
+      if (context && context.length > 0) {
+        for (let i = context.length - 1; i >= 0; i--) {
+          ret += options.fn(context[i]);
+        }
+      } else {
+        ret = options.inverse(this);
+      }
+
+      return ret;
     }
   }
 }));
@@ -43,6 +56,14 @@ app.set('port', process.env.PORT || 3030);
 
 app.get('/', (req, res, next) => {
   return res.render('index', {
+    hexagrams: hexagrams,
+    visits: req.session && req.session.visitCount,
+    breathing: false
+  });
+});
+
+app.get('/list', (req, res, next) => {
+  return res.render('list', {
     hexagrams: hexagrams,
     visits: req.session && req.session.visitCount,
     breathing: false

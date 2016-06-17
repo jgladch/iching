@@ -9,40 +9,120 @@
         <text>Shake your phone</text>
         <text id="countdown">6</text>
       </div>
-      <div class="heading">
-        <text class="title">Initiating</text>
-        <text class="order">1</text>
-        <div id="hex-icon">
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
+      <div class="heading-list">
+        <div class="hex-swiper-1">
+          <div class="swiper-wrapper">
+            {{#each hexagrams}}
+              <div class="swiper-slide">
+                <div id="hex-icon">
+                  {{#eachReverse sequence}}
+                    <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
+                      <div class="hex-icon-line-left">&nbsp;</div>
+                      <div class="hex-icon-line-right">&nbsp;</div>
+                    </div>
+                  {{/eachReverse}}
+                </div>
+              </div>
+            {{/each}}
           </div>
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
-          </div>
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
-          </div>
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
-          </div>
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
-          </div>
-          <div class="hex-icon-line yang">
-            <div class="hex-icon-line-left">&nbsp;</div>
-            <div class="hex-icon-line-right">&nbsp;</div>
+        </div>
+        <div class="hex-swiper-2">
+          <div class="swiper-wrapper">
+            {{#each hexagrams}}
+              <div class="swiper-slide">
+                <div id="hex-icon">
+                  {{#eachReverse sequence}}
+                    <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
+                      <div class="hex-icon-line-left">&nbsp;</div>
+                      <div class="hex-icon-line-right">&nbsp;</div>
+                    </div>
+                  {{/eachReverse}}
+                </div>
+              </div>
+            {{/each}}
           </div>
         </div>
       </div>
-      <div class="swiper-container">
+      <div class="comparison-body">
+        <div class="hex-1">
+          <div class="title-row">
+            1. Initiating
+          </div>
+          <div class="hex-row">
+            <div class="hex-side">
+              <div class="hex-icon-compare">
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+              </div>
+            </div>
+            <div class="info-side">Info info info!</div>
+          </div>
+        </div>
+        <div class="hex-2">
+          <div class="title-row">
+            1. Initiating
+          </div>
+          <div class="hex-row">
+            <div class="hex-side">
+              <div class="hex-icon-compare">
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+                <div class="line yang">
+                  <div class="left">&nbsp;</div>
+                  <div class="right">&nbsp;</div>
+                </div>
+              </div>
+            </div>
+            <div class="info-side">
+              Information!
+            </div>
+          </div>
+        </div>
+      </div>
+      {{!-- <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <div id="hexagram">
+            <div class="hexagram-compare">
               <div class="line yang">
                 <div class="left">&nbsp;</div>
                 <div class="right">&nbsp;</div>
@@ -133,7 +213,7 @@
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-      </div>
+      </div> --}}
     </div>
   </div>
   <div id="arrows">
@@ -413,13 +493,29 @@
 
       return;
     };
-
-    var swiper = new Swiper ('.swiper-container', {
+    
+    var hexSwiper1 = new Swiper ('.hex-swiper-1', {
       direction: 'horizontal',
-      loop: false,
-      pagination: '.swiper-pagination',
-      paginationClickable: true,
-      nested: true
+      loop: true,
+      loopedSlides: 64,
+      slidesPerView: 7, // This should be done programattically to handle different screen widths
+      centeredSlides: true,
+      onSlideChangeEnd: function (swiper) {
+
+      }
+      // spaceBetween: 30
+    });
+
+    var hexSwiper2 = new Swiper ('.hex-swiper-2', {
+      direction: 'horizontal',
+      loop: true,
+      loopedSlides: 64,
+      slidesPerView: 7, // This should be done programattically to handle different screen widths
+      centeredSlides: true,
+      onSlideChangeEnd: function (swiper) {
+
+      }
+      // spaceBetween: 30
     });
 
     var showTutorial = function () {
