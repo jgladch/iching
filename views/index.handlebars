@@ -68,54 +68,66 @@
             </div>
           </div>
           <div class="swiper-slide">
-            <div id="commentary-wrapper">
-              <div id="commentary">
-                <div id="decision">
-                  <text></text>
-                </div>
-                <div id="decision_commentary">
-                  <text></text>
-                </div>
+            <div class="slide-liner">
+              <div id="judgement">
+                <text class="text"></text>
+                <div class="spacer"></div>
+                <text class="commentary"></text>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
-            <div id="line-wrapper">
+            <div class="slide-liner">
+              <div id="image">
+                <text class="text"></text>
+                <div class="spacer"></div>
+                <text class="commentary"></text>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="slide-liner">
               <div class="lines">
                 <ol id="lines">
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                   <li class="line">
                     <text class="text"></text>
-                    <text class="commentary"></text>
+                    <text class="summary"></text>
                   </li>
                 </ol>
               </div>
             </div>
           </div>
-          <div class="swiper-slide">Slide 3</div>
+          <div class="swiper-slide">
+            <div class="slide-liner">
+              <div id="introduction">
+                <text></text>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -197,8 +209,18 @@
     };
 
     var changeStudyInfo = function () {
-      if (!!currentHexagram && !!currentHexagram.commentary && !!currentHexagram.commentary.decision) {
-        $('#commentary #decision text').text(currentHexagram.commentary.decision);
+      if (!!currentHexagram && !!currentHexagram.introduction) {
+        $('#introduction text').text(currentHexagram.introduction);
+      }
+
+      if (!!currentHexagram && !!currentHexagram.judgement && !!currentHexagram.judgement.text && !!currentHexagram.judgement.commentary) {
+        $('#judgement text.text').text(currentHexagram.judgement.text);
+        $('#judgement text.commentary').text(currentHexagram.judgement.commentary);
+      }
+
+      if (!!currentHexagram && !!currentHexagram['the image'] && !!currentHexagram['the image'].text && !!currentHexagram['the image'].commentary) {
+        $('#image text.text').text(currentHexagram['the image'].text);
+        $('#image text.commentary').text(currentHexagram['the image'].commentary);
       }
 
       if (!!currentHexagram && !!currentHexagram.commentary && !!currentHexagram.commentary.decision_commentary) {
@@ -206,10 +228,15 @@
       }
 
       if (!!currentHexagram && !!currentHexagram.lines) {
-        $('ol#lines').children().each(function (index, element) {
-          $(element).children('.text').text(currentHexagram.lines[index].text);
-          $(element).children('.commentary').text(currentHexagram.lines[index].commentary);
+        var domLines = $('ol#lines').children();
+
+        currentHexagram.lines.forEach(function (element, index) {
+          var domLine = $(domLines[index]);
+          domLine.children('.text').text(currentHexagram.lines[index].text);
+          domLine.children('.summary').text(currentHexagram.lines[index].summary);
         });
+
+        // Todo: remove 7th line from dom when only 6 are present for a given hexagram
       }
       
       return;

@@ -160,48 +160,38 @@ body {
   font-size: 25px;
 }
 
-#commentary-wrapper {
+#introduction, #judgement, #image {
+  margin-top: 10px;
+  text-align: left;
+
+  text {
+    white-space: pre-line;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  div.spacer {
+    height: 30px;
+  }
+
+  .text {
+    font-family: 'Times', serif;
+    font-size: 20px;
+  }
+
+  .commentary {
+    font-family: 'Helvetica', cursive;
+    margin-top: 10px;
+    font-style: italic;
+  }
+}
+.slide-liner {
   overflow-y: scroll;
   top: 10px;
   left: 10px;
-  bottom: 25px;
-  position: absolute;
-
-  #commentary {
-    margin-top: 10px;
-
-    #decision {
-      text-align: left;
-
-      text {
-        white-space: pre-line;
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 16px;
-        line-height: 1;
-      }
-    }
-
-    #decision_commentary {
-      margin-top: 20px;
-      text-align: left;
-
-      text {
-        white-space: pre-line;
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 16px;
-        line-height: 1;
-      }
-    }
-  }
-}
-
-
-#line-wrapper {
-  overflow-y: scroll;
-  right: 5px;
-  top: 5px;
-  left: 5px;
-  bottom: 25px;
+  right: 10px;
+  bottom: 35px;
   position: absolute;
 }
 
@@ -222,8 +212,14 @@ li.line  {
     white-space: pre-line;
   }
 
-  .commentary {
+  .text {
+    font-size: 18px;
+    font-family: 'Times', serif;
+  }
+
+  .summary {
     font-style: italic;
+    font-size: 13px;
     margin-top: 5px;
   }
 }
