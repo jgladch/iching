@@ -273,3 +273,23 @@ li.line  {
     font-size: 95px;
   }
 }
+
+#swipeModal {
+  opacity: 0;
+  position: absolute;
+  top: 145px;
+  left: 45px;
+  right: 45px;
+  z-index: 0;
+  vertical-align:middle;
+  text-align:center;
+
+  img {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+  }
+}

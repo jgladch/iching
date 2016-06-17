@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
+      <div id="swipeModal">
+        <img src="/images/swipe.gif" alt="">
+      </div>
       <div id="shakeModal">
         <img src="/images/shake-white.png" alt="">
         <text>Shake your phone</text>
@@ -145,6 +148,7 @@
   $(document).ready(function () {
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var hexagrams = {{{json hexagrams}}};
+    var visits = window.visits = {{{json visits}}};
     var currentHexagram;
     var flip = true;
 
@@ -416,6 +420,36 @@
       paginationClickable: true,
       nested: true
     });
+
+    if (visits === 1) { // First time use's been here, animate the swiper
+      var modal = $('#swipeModal');
+      modal.velocity({
+        opacity: 1,
+        'z-index': 12,
+      }, {
+        duration: 300,
+        easing: 'easeInSine',
+        complete: function () {
+
+          window.setTimeout(function () {
+            swiper.slideTo(3, 2500, false);
+
+            window.setTimeout(function () {
+              swiper.slideTo(0, 2500, false);
+            }, 2500);
+          }, 500);
+          
+          modal.velocity({
+            opacity: 0,
+            'z-index': 0
+          }, {
+            duration: 300,
+            delay: 5500,
+            easing: 'easeOutSine'
+          });
+        }
+      });
+    }
 
     var result = 0;
     var deviceMotionSupport = false;
