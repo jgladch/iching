@@ -177,6 +177,8 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  flex: 0 0 30%;
+  overflow-y: scroll;
 
   .title-row {
     flex: 0 0 100%;
@@ -222,8 +224,25 @@ body {
 
   .info-side {
     flex: 1;
+    align-self: flex-end;
     // background-color: blue;
     padding: 5px;
+    overflow: hidden;
+
+    .info-side-wrap {
+
+    }
+
+    .info-slide-wrapper {
+      text {
+        display: block;
+      }
+
+      .image-comm, .judgement-comm {
+        margin-top: 3px;
+        font-style: italic;
+      }
+    }
   }
 
   .hex-icon-compare {

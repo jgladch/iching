@@ -28,9 +28,9 @@
     </div>
     <div class="other-info">
       <div class="group">
-        <span class="name-other">Qian</span>
+        <span class="name-other"></span>
         <span class="break"> - </span>
-        <span class="image-other">Cloud over Mountain</span>
+        <span class="image-other"></span>
       </div>
     </div>
   </div>
@@ -61,7 +61,22 @@
     </div>
   </div>
   <div class="info-side">
-    <text class="info"></text>
+    <div class="info-swiper-1">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="info-slide-wrapper">
+            <text class="judgement"></text>
+            <text class="judgement-comm"></text>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="info-slide-wrapper">
+            <text class="image"></text>
+            <text class="image-comm"></text>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="heading-list">
@@ -94,9 +109,9 @@
     </div>
     <div class="other-info">
       <div class="group">
-        <span class="name-other">Qian</span>
+        <span class="name-other"></span>
         <span class="break"> - </span>
-        <span class="image-other">Cloud over Mountain</span>
+        <span class="image-other"></span>
       </div>
     </div>
   </div>
@@ -127,7 +142,22 @@
     </div>
   </div>
   <div class="info-side">
-    <text class="info">What about now?</text>
+    <div class="info-swiper-2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="info-slide-wrapper">
+            <text class="judgement"></text>
+            <text class="judgement-comm"></text>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="info-slide-wrapper">
+            <text class="image"></text>
+            <text class="image-comm"></text>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="differences">
@@ -350,9 +380,6 @@
               return _.isEqual(trigram.sequence, sequence.slice(0, 3));
             });
 
-            console.log('upper: ', upper, upper.image.toProperCase());
-            console.log('lower: ', lower, lower.image.toProperCase());
-
             return  upper.image.toProperCase() + ' over ' + lower.image.toProperCase();
           };
 
@@ -383,7 +410,21 @@
       };
 
       var animateInfo = function () {
-        return $('.hex-' + num + ' .info-side text').text(currentHexagrams[num].judgement.text);
+        var animateImage = function () {
+          $('.info-swiper-' + num + ' text.image').text(currentHexagrams[num]['the image'].text);
+          $('.info-swiper-' + num + ' text.image-comm').text(currentHexagrams[num]['the image'].commentary);
+          return;
+        };
+
+        var animageJudge = function () {
+          $('.info-swiper-' + num + ' text.judgement').text(currentHexagrams[num]['judgement'].text);
+          $('.info-swiper-' + num + ' text.judgement-comm').text(currentHexagrams[num]['judgement'].commentary);
+          return;
+        };
+
+        animateImage();
+        animageJudge();
+        return;
       };
 
       var animateDifference = function () {
@@ -469,6 +510,18 @@
         }
       },
       onClick: handleClick
+    });
+
+    var infoSwiper1 = new Swiper ('.info-swiper-1', {
+      direction: 'horizontal',
+      loop: false,
+      spaceBetween: 15
+    });
+
+    var infoSwiper2 = new Swiper ('.info-swiper-2', {
+      direction: 'horizontal',
+      loop: false,
+      spaceBetween: 15
     });
 
     var scrollSwiperTo = function (num, index) {
