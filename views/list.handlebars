@@ -266,7 +266,7 @@
       var animateTitleRow = function () {
         var animateOrder = function () {
           return $('.hex-' + num + ' span.order').velocity('transition.flipXOut', {
-            duration: 200,
+            duration: 300,
             complete: function () {
               return $('.hex-' + num + ' span.order').text(currentHexagrams[num].order);
             }
@@ -275,15 +275,25 @@
 
         var animateName = function () {
           return $('.hex-' + num + ' span.name').velocity('transition.flipXOut', {
-            duration: 200,
+            duration: 300,
             complete: function () {
               return $('.hex-' + num + ' span.name').text(currentHexagrams[num].title);
             }
           }).velocity('transition.flipXIn', 300);
         };
 
+        var animateNameOther = function () {
+          return $('.hex-' + num + ' span.name-other').velocity('transition.flipXOut', {
+            duration: 300,
+            complete: function () {
+              return $('.hex-' + num + ' span.name-other').text(currentHexagrams[num].name);
+            }
+          }).velocity('transition.flipXIn', 300);
+        };
+
         animateOrder();
         animateName();
+        animateNameOther();
       };
 
       var animateHexagram = function () {
