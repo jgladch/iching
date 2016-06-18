@@ -55,15 +55,15 @@ app.use((req, res, next) => {
 app.set('port', process.env.PORT || 3030);
 
 app.get('/', (req, res, next) => {
-  return res.render('index', {
+  return res.render('list', {
     hexagrams: hexagrams,
     visits: req.session && req.session.visitCount,
     breathing: false
   });
 });
 
-app.get('/list', (req, res, next) => {
-  return res.render('list', {
+app.get('/single', (req, res, next) => {
+  return res.render('index', {
     hexagrams: hexagrams,
     visits: req.session && req.session.visitCount,
     breathing: false

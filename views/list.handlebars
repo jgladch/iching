@@ -1,6 +1,6 @@
 <div class="heading-list">
-  <div class="random">
-    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+  <div class="random" data-id="1">
+    <span class="glyphicon glyphicon-refresh random" data-id="1" aria-hidden="true"></span>
   </div>
   <div class="swiper-flex">
     <div class="hex-swiper-1">
@@ -80,8 +80,8 @@
   </div>
 </div>
 <div class="heading-list">
-  <div class="random">
-    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+  <div class="random" data-id="2">
+    <span class="glyphicon glyphicon-refresh random" data-id="2" aria-hidden="true"></span>
   </div>
   <div class="swiper-flex">
     <div class="hex-swiper-2">
@@ -181,8 +181,6 @@
     var setCurrentHexagram = function (num, index, updateTitle, updateHex, updateJudge, updateDiff) {
       var hex = currentHexagrams[num] = hexagrams[index];      
       changeSequence(num, updateTitle, updateHex, updateJudge, updateDiff);
-
-      console.log('hex: ', hex);
 
       return hex;
     };
@@ -448,6 +446,21 @@
       }
     };
 
+    var coinFlip = function () {
+      return Math.floor(Math.random() * 2);
+    };
+
+    var randomSequence = function (num) {
+      var sequence = [];
+
+      for (var i = 0; i < 6; i++) {
+        flip = coinFlip() + coinFlip() + coinFlip();
+        sequence.push(flip >= 2 ? 1 : 0);
+      }
+
+      return setCurrentHexagram(num, matchSequence(sequence), true, true, true, true, true);
+    };
+
     var handleClick = function (swiper, event) {
       return swiper.slideTo(swiper.clickedIndex);
     };
@@ -528,6 +541,13 @@
       var swiper = num === 1 ? hexSwiper1 : hexSwiper2;
       swiper.slideTo(index, 400, false);
     };
+
+    $('div.random').click(function () {
+      var el = $(this);
+      var num = el.data('id');
+
+      return randomSequence(num);
+    });
 
     $('.line').click(function () {
       var el = $(this);
