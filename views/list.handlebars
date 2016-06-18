@@ -244,6 +244,10 @@
       }
     };
 
+    var handleClick = function (swiper, event) {
+      return swiper.slideTo(swiper.clickedIndex);
+    };
+
     var hexSwiper1 = new Swiper ('.hex-swiper-1', {
       direction: 'horizontal',
       loop: true,
@@ -253,7 +257,8 @@
       onSlideChangeEnd: function (swiper) {
         var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
         return setCurrentHexagram(1, index, true, true, true, true);
-      }
+      },
+      onClick: handleClick
     });
 
     var hexSwiper2 = new Swiper ('.hex-swiper-2', {
@@ -265,7 +270,8 @@
       onSlideChangeEnd: function (swiper) {
         var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
         return setCurrentHexagram(2, index, true, true, true, true);
-      }
+      },
+      onClick: handleClick
     });
 
     var scrollSwiperTo = function (num, index) {
