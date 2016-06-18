@@ -30,7 +30,7 @@
       <div class="group">
         <span class="name-other">Qian</span>
         <span class="break"> - </span>
-        <span class="image">Cloud over Mountain</span>
+        <span class="image-other">Cloud over Mountain</span>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
       <div class="group">
         <span class="name-other">Qian</span>
         <span class="break"> - </span>
-        <span class="image">Cloud over Mountain</span>
+        <span class="image-other">Cloud over Mountain</span>
       </div>
     </div>
   </div>
@@ -139,7 +139,6 @@
       display: 'flex'
     });
 
-    jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var hexagrams = window.hexagrams = {{{json hexagrams}}};
     var swiper1Init = false;
     var swiper2Init = false;
@@ -291,9 +290,84 @@
           }).velocity('transition.flipXIn', 300);
         };
 
+        var animateTitleImage = function () {
+          var buildImage = function (sequence) {
+            var trigrams = [{
+              sequence: [1, 1, 1],
+              name: 'the Creative',
+              attr: 'strong',
+              image: 'heaven',
+              family: 'father'
+            }, {
+              sequence: [0, 0, 0],
+              name: 'the Receptive',
+              attr: 'yielding',
+              image: 'earth',
+              family: 'mother'
+            }, {
+              sequence: [1, 0, 0],
+              name: 'the Arousing',
+              attr: 'movement',
+              image: 'thunder',
+              family: 'first son'
+            }, {
+              sequence: [0, 1, 0],
+              name: 'the Abysmal',
+              attr: 'dangerous',
+              image: 'water',
+              family: 'second son'
+            }, {
+              sequence: [0, 0, 1],
+              name: 'Keeping Still',
+              attr: 'resting',
+              image: 'mountain',
+              family: 'third son'
+            }, {
+              sequence: [0, 1, 1],
+              name: 'the Gentle',
+              attr: 'penetrating',
+              image: 'wood',
+              family: 'first daughter'
+            }, {
+              sequence: [1, 0, 1],
+              name: 'the Clinging',
+              attr: 'light-giving',
+              image: 'fire',
+              family: 'second daughter'
+            }, {
+              sequence: [1, 1, 0],
+              name: 'the Joyous',
+              attr: 'joyful',
+              image: 'lake',
+              family: 'third daughter'
+            }];
+
+            var upper = _.find(trigrams, function (trigram) {
+              return _.isEqual(trigram.sequence, sequence.slice(3));
+            });
+
+            var lower = _.find(trigrams, function (trigram) {
+              return _.isEqual(trigram.sequence, sequence.slice(0, 3));
+            });
+
+            console.log('upper: ', upper, upper.image.toProperCase());
+            console.log('lower: ', lower, lower.image.toProperCase());
+
+            return  upper.image.toProperCase() + ' over ' + lower.image.toProperCase();
+          };
+
+          return $('.hex-' + num + ' span.image-other').velocity('transition.flipXOut', {
+            duration: 300,
+            complete: function () {
+              return $('.hex-' + num + ' span.image-other').text(buildImage(currentHexagrams[num].sequence));
+            }
+          }).velocity('transition.flipXIn', 300);
+        };
+
         animateOrder();
         animateName();
         animateNameOther();
+        animateTitleImage();
       };
 
       var animateHexagram = function () {
