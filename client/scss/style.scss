@@ -39,15 +39,27 @@ body {
 }
 
 .heading-list {
-  height: 90px;
+  height: 39px;
   width: 100%;
   font-family: 'Overlock SC', cursive;
   color: rgba(255, 255, 255, 0.75);
   background-color: rgba(95, 95, 95, 0.75);
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 
-  .hex-swiper-2 {
-    margin-top: 40px;
+  .random {
+    width: 35px;
+    background: red;
+    font-size: 25px;
+    padding: 4px;
+  }
+
+  .swiper-flex {
+    background: blue;
+    flex: 1;
+    overflow: hidden;
   }
 }
 
@@ -63,7 +75,7 @@ body {
   margin: 0;
   position: absolute;
   right: 0;
-  top: 9px;
+  top: 4px;
 
   .hex-icon-line {
     height: 3px;
