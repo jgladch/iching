@@ -1,16 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4" id="main-container">
-      <div id="swipeModal">
-        <img src="/images/swipe.gif" alt="">
-      </div>
-      <div id="shakeModal">
-        <img src="/images/shake-white.png" alt="">
-        <text>Shake your phone</text>
-        <text id="countdown">6</text>
-      </div>
       <div class="heading-list">
         <div class="hex-swiper-1">
+          <div class="circle"></div>
           <div class="swiper-wrapper">
             {{#each hexagrams}}
               <div class="swiper-slide">
@@ -46,454 +39,181 @@
       <div class="comparison-body">
         <div class="hex-1">
           <div class="title-row">
-            1. Initiating
+            <span class="order">1</span><span class="name">Initiating</span>
           </div>
-          <div class="hex-row">
-            <div class="hex-side">
-              <div class="hex-icon-compare">
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-              </div>
+          <div class="hex-icon-compare">
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
             </div>
-            <div class="info-side">Info info info!</div>
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="1">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+          </div>
+          <div class="info-side">
+            <text class="info">What about now?</text>
           </div>
         </div>
         <div class="hex-2">
           <div class="title-row">
-            1. Initiating
+            <span class="order">1</span><span class="name">Initiating</span>
           </div>
-          <div class="hex-row">
-            <div class="hex-side">
-              <div class="hex-icon-compare">
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-                <div class="line yang">
-                  <div class="left">&nbsp;</div>
-                  <div class="right">&nbsp;</div>
-                </div>
-              </div>
+          <div class="hex-icon-compare">
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
             </div>
-            <div class="info-side">
-              Information!
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
             </div>
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+            <div class="line yang" data-id="2">
+              <div class="left">&nbsp;</div>
+              <div class="right">&nbsp;</div>
+            </div>
+          </div>
+          <div class="info-side">
+            <text class="info">What about now?</text>
           </div>
         </div>
       </div>
-      {{!-- <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="hexagram-compare">
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-              <div class="line yang">
-                <div class="left">&nbsp;</div>
-                <div class="right">&nbsp;</div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="slide-liner">
-              <div id="judgement">
-                <text class="text"></text>
-                <div class="spacer"></div>
-                <text class="commentary"></text>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="slide-liner">
-              <div id="image">
-                <text class="text"></text>
-                <div class="spacer"></div>
-                <text class="commentary"></text>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="slide-liner">
-              <div class="lines">
-                <ol id="lines">
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                  <li class="line">
-                    <text class="text"></text>
-                    <text class="summary"></text>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="slide-liner">
-              <div id="introduction">
-                <text></text>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-      </div> --}}
     </div>
   </div>
-  <div id="arrows">
+  {{!-- <div id="arrows">
     <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
     <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
-    {{!-- <span id="flip" class="glyphicon glyphicon-menu-hamburger pull-right glyph-arrows" aria-hidden="true"></span> --}}
     <span id="shuffle" class="glyphicon glyphicon-random glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
     <span id="cast" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
     <span id="help" class="glyphicon glyphicon-question-sign glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
-  </div>
+  </div> --}}
 </div>
 <script>
   $(document).ready(function () {
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
-    var hexagrams = {{{json hexagrams}}};
-    var visits = window.visits = {{{json visits}}};
+    var hexagrams = window.hexagrams = {{{json hexagrams}}};
+    var visits = {{{json visits}}};
     var currentHexagram;
     var flip = true;
 
-    var changeOrderHeading = function (order, delay) {
-      var outOptions = {
-        duration: 200,
-        complete: function () {
-          return $('.heading .order').text(order);
-        }
-      };
-
-      if (!!delay) {
-        outOptions.delay = delay;
-      }
-
-      return $('.heading .order').velocity('transition.flipXOut', outOptions).velocity('transition.flipXIn', 300);
+    var currentHexagrams = {
+      1: {},
+      2: {}
     };
 
-    var changeTitleHeading = function (title, delay) {
-      var outOptions = {
-        duration: 200,
-        complete: function () {
-          return $('.heading .title').text(title);
-        }
-      };
+    var setCurrentHexagram = function (num, index, updateTitle, updateHex, updateJudge) {
+      var hex = currentHexagrams[num] = hexagrams[index];      
+      changeSequence(num, updateTitle, updateHex, updateJudge);
 
-      if (!!delay) {
-        outOptions.delay = delay;
-      }
-
-      return $('.heading .title').velocity({
-        translateX: 100,
-        opacity: 0
-      }, outOptions).velocity('transition.slideRightIn', 300);
+      return hex;
     };
 
-    var changeIconSequence = function (sequence, delay) {
-      var outOptions = {
-        duration: 200,
-        complete: function () {
-          return $('#hex-icon').children().reverse().each(function (index, el) {
-            if (sequence[index] === 1) {
-              $(el).removeClass('yin').addClass('yang');
-            } else {
-              $(el).removeClass('yang').addClass('yin');
-            }
-
-            return;
-          });
-        }
-      };
-
-      if (!!delay) {
-        outOptions.delay = delay;
-      }
-
-      return $('#hex-icon').velocity({
-        translateX: 100,
-        opacity: 0
-      }, outOptions).velocity('transition.slideRightIn', 300);
-    };
-
-    var changeStudyInfo = function () {
-      if (!!currentHexagram && !!currentHexagram.introduction) {
-        $('#introduction text').text(currentHexagram.introduction);
-      }
-
-      if (!!currentHexagram && !!currentHexagram.judgement && !!currentHexagram.judgement.text && !!currentHexagram.judgement.commentary) {
-        $('#judgement text.text').text(currentHexagram.judgement.text);
-        $('#judgement text.commentary').text(currentHexagram.judgement.commentary);
-      }
-
-      if (!!currentHexagram && !!currentHexagram['the image'] && !!currentHexagram['the image'].text && !!currentHexagram['the image'].commentary) {
-        $('#image text.text').text(currentHexagram['the image'].text);
-        $('#image text.commentary').text(currentHexagram['the image'].commentary);
-      }
-
-      if (!!currentHexagram && !!currentHexagram.commentary && !!currentHexagram.commentary.decision_commentary) {
-        $('#commentary #decision_commentary text').text(currentHexagram.commentary.decision_commentary);
-      }
-
-      if (!!currentHexagram && !!currentHexagram.lines) {
-        var domLines = $('ol#lines').children();
-
-        currentHexagram.lines.forEach(function (element, index) {
-          var domLine = $(domLines[index]);
-          domLine.children('.text').text(currentHexagram.lines[index].text);
-          domLine.children('.summary').text(currentHexagram.lines[index].summary);
-        });
-
-        // Todo: remove 7th line from dom when only 6 are present for a given hexagram
-      }
-      
-      return;
-    };
-
-    var changeSequence = function (sequence, cb) {
-      return $('#hexagram').children().reverse().each(function (index, element) {
+    var getSequence = function (num) {
+      var sequence = $('.hex-' + num + ' .hex-icon-compare').children().reverse().map(function (index, element) {
         var el = $(element);
-        if (index < 5) {
-          return changeLine(el, sequence[index], {
-            duration: 1000
-          });
-        } else {
-          return changeLine(el, sequence[index], {
-            complete: cb,
-            duration: 1000,
-            changeInfo: true
-          });
-        }
-      });
+        return el.hasClass('yang') ? 1 : 0;
+      }).get();
+
+      return sequence;
     };
 
-    var flipSequence = function (cb) {
-      var subroutine = function (index) {
-        if (index === 5) {
-          return changeLine(index, false, {
-            duration: 500,
-            delay: 500,
-            complete: cb,
-            changeInfo: true
-          });
-        } else {
-          return changeLine(index, false, {
-            duration: 500,
-            delay: index !== 0 ? 500 : 0,
-            changeInfo: true,
-            complete: function () {
-              return subroutine(index + 1);
-            }
-          });
-        }
-      };
-
-      return subroutine(0);
-    };
-
-    var matchHexagram = function (sequence) {
-      return _.find(hexagrams, function (hexagram) {
-        return _.isEqual(hexagram.sequence, sequence);
-      });
-    };
-
-    var getCurrentSequence = function () {
-      return $('#hexagram').children('.line').map(function () {
-        return !!$(this).hasClass('yang') ? 1 : 0;
-      }).get().reverse();
-    };
-
-    var changeCurrentHexagramInfo = function (delay) {
-      changeOrderHeading(currentHexagram.order, delay);
-      changeTitleHeading(currentHexagram.title, delay);
-      changeIconSequence(currentHexagram.sequence, delay);
-      changeStudyInfo(currentHexagram.commentary);
-
-      return;
-    };
-
-    var shiftHexagrams = function (n) {
+    var matchSequence = function (sequence) {
       var index;
 
-      if (currentHexagram.order + n <= 0) { // Handle edge cases of hexagram shifting
-        index = 64 + (currentHexagram.order + n);
-      } else if (currentHexagram.order + n > 64) {
-        index = currentHexagram.order + n - 64;
-      } else {
-        index = currentHexagram.order + n;
-      }
+      var hex = _.find(hexagrams, function (hex, idx) {
+        var flag = _.isEqual(hex.sequence, sequence);
 
-      var nextHex = _.find(hexagrams, function (hexagram) {
-        return hexagram.order === index;
-      });
-
-      changeSequence(nextHex.sequence);
-
-      return;
-    };
-
-    var coinFlip = function () {
-      return Math.floor(Math.random() * 2);
-    };
-
-
-    var changeLine = function (indexOrElement, newState, options) {
-      options = options || {};
-      var el;
-
-      if (_.isNumber(indexOrElement)) {
-        el = $('#hexagram').children().reverse()[indexOrElement];
-      } else {
-        el = indexOrElement;
-      }
-
-      var yangOptions = _.defaults(options, {
-        easing: 'spring'
-      });
-
-      var yinOptions = _.defaults(options, {
-        easing: 'spring',
-        duration: 400
-      });
-
-      var fastYinOptions = _.extend(_.omit(yinOptions, ['complete', 'duration']), {
-        duration: yinOptions.duration / 2
-      });
-
-      var needsToChange = function (el, next) {
-        var flag = el.hasClass('yang') ? 1 : 0;
-        return flag !== next;
-      }
-
-      var handleLine = function (el) {
-        el = $(el);
-        if (el.hasClass('yang')) {
-          el.removeClass('yang').addClass('yin');
-          el.children('.left').velocity({
-            right: '66%'
-          }, yangOptions);
-          el.children('.right').velocity({
-            left: '66%'
-          }, _.omit(yangOptions, 'complete'));
-        } else {
-          el.removeClass('yin').addClass('yang');
-
-          if (flip) {
-            el.children('.left').velocity({
-              right: '100%'
-            }, fastYinOptions);
-
-            el.children('.right').velocity({
-              left: '10px',
-            }, yinOptions);
-
-          } else {
-            el.children('.right').velocity({
-              left: '100%'
-            }, fastYinOptions);
-
-            el.children('.left').velocity({
-              right: '10px',
-            }, yinOptions);
-          }
-
-          flip = !flip;
+        if (flag) {
+          index = idx;
         }
 
-        currentHexagram = matchHexagram(getCurrentSequence());
+        return _.isEqual(hex.sequence, sequence);
+      });
+
+      return index;
+    };
+
+    var changeSequence = function (num, updateTitle, updateHex, updateJudge) {
+      var animateTitleRow = function () {
+        var animateOrder = function () {
+          return $('.hex-' + num + ' span.order').velocity('transition.flipXOut', {
+            duration: 200,
+            complete: function () {
+              return $('.hex-' + num + ' span.order').text(currentHexagrams[num].order);
+            }
+          }).velocity('transition.flipXIn', 300);
+        };
+
+        var animateName = function () {
+          return $('.hex-' + num + ' span.name').velocity('transition.flipXOut', {
+            duration: 200,
+            complete: function () {
+              return $('.hex-' + num + ' span.name').text(currentHexagrams[num].title);
+            }
+          }).velocity('transition.flipXIn', 300);
+        };
+
+        animateOrder();
+        animateName();
       };
 
-      if (_.isNumber(newState)) {
-        if (needsToChange(el, newState)) {
-          handleLine(el);
-        }
-      } else { // toggle
-        handleLine(el);
+      var animateHexagram = function () {
+        return $('.hex-' + num + ' .hex-icon-compare').children().reverse().each(function (index, element) {
+          var el = $(element);
+
+          if (currentHexagrams[num].sequence[index] === 0) {
+            el.removeClass('yang').addClass('yin');
+          } else {
+            el.addClass('yang').removeClass('yin');
+          }
+        });
+      };
+
+      var animateInfo = function () {
+        return $('.hex-' + num + ' .info-side text').text(currentHexagrams[num].judgement.text);
+      };
+
+      if (updateTitle) {
+        animateTitleRow();
       }
 
-      if (options.changeInfo) {
-        changeCurrentHexagramInfo(options.delay);
+      if (updateHex) {
+        animateHexagram();
       }
 
-      return;
+      if (updateJudge) {
+        animateInfo();
+      }
     };
-    
+
     var hexSwiper1 = new Swiper ('.hex-swiper-1', {
       direction: 'horizontal',
       loop: true,
@@ -501,9 +221,9 @@
       slidesPerView: 7, // This should be done programattically to handle different screen widths
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
-
+        var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
+        return setCurrentHexagram(1, index, true, true, true);
       }
-      // spaceBetween: 30
     });
 
     var hexSwiper2 = new Swiper ('.hex-swiper-2', {
@@ -513,127 +233,15 @@
       slidesPerView: 7, // This should be done programattically to handle different screen widths
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
-
+        var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
+        return setCurrentHexagram(2, index, true, true, true);
       }
-      // spaceBetween: 30
     });
 
-    var showTutorial = function () {
-      var modal = $('#swipeModal');
-      modal.velocity({
-        opacity: 1,
-        'z-index': 12,
-      }, {
-        duration: 300,
-        easing: 'easeInSine',
-        complete: function () {
-
-          window.setTimeout(function () {
-            swiper.slideTo(3, 2500, false);
-
-            window.setTimeout(function () {
-              swiper.slideTo(0, 2500, false);
-            }, 2500);
-          }, 500);
-          
-          modal.velocity({
-            opacity: 0,
-            'z-index': 0
-          }, {
-            duration: 300,
-            delay: 5500,
-            easing: 'easeOutSine'
-          });
-        }
-      });
+    var scrollSwiperTo = function (num, index) {
+      var swiper = num === 1 ? hexSwiper1 : hexSwiper2;
+      swiper.slideTo(index, 400);
     };
-
-    if (visits === 1) { // First time use's been here, animate the swiper
-      showTutorial();
-    }
-
-    var result = 0;
-    var deviceMotionSupport = false;
-    var countdown = 6;
-
-    var testForDeviceMotionSupport = function () {
-      window.addEventListener('devicemotion', checkMotionEventSupport);
-      window.setTimeout(function () {
-        window.removeEventListener('devicemotion', checkMotionEventSupport);
-      }, 300);
-    };
-
-    var checkMotionEventSupport = function (event) {
-      if (event && event.acceleration.x !== null && event.acceleration.y !== null && event.acceleration.z !== null && event.rotationRate.alpha !== null && event.rotationRate.beta !== null && event.rotationRate.gamma !== null) {
-        deviceMotionSupport = true;
-      } else {
-        deviceMotionSupport = false;
-      }
-
-      return;
-    };
-
-    var handleDeviceMotionEvent = function (event) {
-      result += event.acceleration.x + event.acceleration.y + event.acceleration.z + event.rotationRate.alpha + event.rotationRate.beta + event.rotationRate.gamma;
-
-      return;
-    };
-
-    var handleCountdown = function (index) {
-      var counter = $('#countdown');
-      var current = counter.text();
-      
-      var map = {
-        0: 6,
-        1: 5,
-        2: 4,
-        3: 3,
-        4: 2,
-        5: 1,
-        6: 0
-      };
-
-      return counter.text(map[index]);
-    };
-
-    var cast = function (cb) {
-      if (deviceMotionSupport) {
-        window.addEventListener('devicemotion', handleDeviceMotionEvent);
-        window.setTimeout(function () {
-          window.removeEventListener('devicemotion', handleDeviceMotionEvent);
-            cb(Math.round(result) % 2);
-            result = 0;
-        }, 1000);
-      } else {
-        window.setTimeout(function () {
-          cb(Math.round(Math.random() * 100) % 2);
-        }, 1000);
-      }
-    };
-
-    var deviceMotionSequence = function (cb) {
-      var sequence = [];
-
-      var subroutine = function (index) {
-        if (index === 6) {
-          cb(sequence);
-          return;
-        }
-
-        cast(function (result) {
-          handleCountdown(index);
-          sequence.push(result);
-
-          return subroutine(index + 1);
-        });
-      };
-
-      return subroutine(0);
-    };
-
-    currentHexagram = matchHexagram(getCurrentSequence());
-    changeStudyInfo();
-    testForDeviceMotionSupport();
 
     $('body').keydown(function(e){
       if ((e.keyCode || e.which) === 37) { // left arrow
@@ -644,63 +252,19 @@
     });
 
     $('.line').click(function () {
-      return changeLine($(this), false, {
-        changeInfo: true,
-        duration: 1000
-      });
-    });
+      var el = $(this);
+      var num = el.data('id');
 
-    $('#left-arrow').click(function () {
-      return shiftHexagrams(-1);
-    });
-
-    $('#right-arrow').click(function () {
-      return shiftHexagrams(1);
-    });
-
-    $('#shuffle').click(function () {
-      var newSequence = [];
-
-      for (var i = 0; i < 6; i++) {
-        result = coinFlip() + coinFlip() + coinFlip();
-        newSequence.push(result >= 2 ? 1 : 0);
+      if (el.hasClass('yang')) {
+        el.removeClass('yang').addClass('yin');
+      } else {
+        el.removeClass('yin').addClass('yang');
       }
 
-      currentHexagram = matchHexagram(newSequence);
-      changeSequence(newSequence);
+      var index = matchSequence(getSequence(num));
 
-      return;
-    });
-
-    $('#flip').click(function () {
-      return flipSequence();
-    });
-
-    $('#help').click(showTutorial);
-
-    $('#cast').click(function () {
-      var modal = $('#shakeModal');
-      modal.velocity({
-        opacity: 1,
-        'z-index': 12,
-      }, {
-        duration: 300,
-        easing: 'easeInSine',
-        complete: function () {
-          deviceMotionSequence(function (sequence) {
-            modal.velocity({
-              opacity: 0,
-              'z-index': 0
-            }, {
-              duration: 300,
-              easing: 'easeOutSine',
-              complete: function () {
-                changeSequence(sequence);
-              }
-            });
-          });
-        }
-      });
+      setCurrentHexagram(num, index, false, false, false);
+      scrollSwiperTo(num, index);
     });
   });
 </script>
