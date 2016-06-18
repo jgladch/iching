@@ -105,6 +105,7 @@
             <text class="info">What about now?</text>
           </div>
         </div>
+        <div class="differences"></div>
       </div>
     </div>
   </div>
@@ -129,9 +130,9 @@
       2: {}
     };
 
-    var setCurrentHexagram = function (num, index, updateTitle, updateHex, updateJudge) {
+    var setCurrentHexagram = function (num, index, updateTitle, updateHex, updateJudge, updateDiff) {
       var hex = currentHexagrams[num] = hexagrams[index];      
-      changeSequence(num, updateTitle, updateHex, updateJudge);
+      changeSequence(num, updateTitle, updateHex, updateJudge, updateDiff);
 
       return hex;
     };
@@ -161,7 +162,28 @@
       return index;
     };
 
-    var changeSequence = function (num, updateTitle, updateHex, updateJudge) {
+    var compareHexagrams = function () {
+      var sequence1 = currentHexagrams['1'].sequence;
+      var sequence2 = currentHexagrams['2'].sequence;
+
+      if (sequence1 && sequence2) {
+        var result = [];
+
+        _.each(sequence1, function (val, index) {
+          if (val !== sequence2[index]) {
+            result.push(index);
+          }
+        });
+
+        console.log('result: ', result);
+
+        return result;
+      } else {
+        return;
+      }
+    };
+
+    var changeSequence = function (num, updateTitle, updateHex, updateJudge, updateDifference) {
       var animateTitleRow = function () {
         var animateOrder = function () {
           return $('.hex-' + num + ' span.order').velocity('transition.flipXOut', {
@@ -201,6 +223,10 @@
         return $('.hex-' + num + ' .info-side text').text(currentHexagrams[num].judgement.text);
       };
 
+      var animateDifference = function () {
+        compareHexagrams();
+      };
+
       if (updateTitle) {
         animateTitleRow();
       }
@@ -212,6 +238,10 @@
       if (updateJudge) {
         animateInfo();
       }
+
+      if (updateDifference) {
+        animateDifference();
+      }
     };
 
     var hexSwiper1 = new Swiper ('.hex-swiper-1', {
@@ -222,7 +252,7 @@
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
         var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
-        return setCurrentHexagram(1, index, true, true, true);
+        return setCurrentHexagram(1, index, true, true, true, true);
       }
     });
 
@@ -234,13 +264,13 @@
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
         var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
-        return setCurrentHexagram(2, index, true, true, true);
+        return setCurrentHexagram(2, index, true, true, true, true);
       }
     });
 
     var scrollSwiperTo = function (num, index) {
       var swiper = num === 1 ? hexSwiper1 : hexSwiper2;
-      swiper.slideTo(index, 400);
+      swiper.slideTo(index, 400, false);
     };
 
     $('body').keydown(function(e){
@@ -263,7 +293,7 @@
 
       var index = matchSequence(getSequence(num));
 
-      setCurrentHexagram(num, index, false, false, false);
+      setCurrentHexagram(num, index, true, false, true, true);
       scrollSwiperTo(num, index);
     });
   });
