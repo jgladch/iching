@@ -1,124 +1,161 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4" id="main-container">
-      <div class="heading-list">
-        <div class="hex-swiper-1">
-          <div class="circle"></div>
-          <div class="swiper-wrapper">
-            {{#each hexagrams}}
-              <div class="swiper-slide">
-                <div id="hex-icon">
-                  {{#eachReverse sequence}}
-                    <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
-                      <div class="hex-icon-line-left">&nbsp;</div>
-                      <div class="hex-icon-line-right">&nbsp;</div>
-                    </div>
-                  {{/eachReverse}}
-                </div>
+<div class="heading-list">
+  <div class="hex-swiper-1">
+    <div class="circle"></div>
+    <div class="swiper-wrapper">
+      {{#each hexagrams}}
+        <div class="swiper-slide">
+          <div id="hex-icon">
+            {{#eachReverse sequence}}
+              <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
+                <div class="hex-icon-line-left">&nbsp;</div>
+                <div class="hex-icon-line-right">&nbsp;</div>
               </div>
-            {{/each}}
+            {{/eachReverse}}
           </div>
         </div>
-        <div class="hex-swiper-2">
-          <div class="swiper-wrapper">
-            {{#each hexagrams}}
-              <div class="swiper-slide">
-                <div id="hex-icon">
-                  {{#eachReverse sequence}}
-                    <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
-                      <div class="hex-icon-line-left">&nbsp;</div>
-                      <div class="hex-icon-line-right">&nbsp;</div>
-                    </div>
-                  {{/eachReverse}}
-                </div>
-              </div>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-      <div class="comparison-body">
-        <div class="hex-1">
-          <div class="title-row">
-            <span class="order">1</span><span class="name">Initiating</span>
-          </div>
-          <div class="hex-icon-compare">
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="1">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-          </div>
-          <div class="info-side">
-            <text class="info">What about now?</text>
-          </div>
-        </div>
-        <div class="hex-2">
-          <div class="title-row">
-            <span class="order">1</span><span class="name">Initiating</span>
-          </div>
-          <div class="hex-icon-compare">
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-            <div class="line yang" data-id="2">
-              <div class="left">&nbsp;</div>
-              <div class="right">&nbsp;</div>
-            </div>
-          </div>
-          <div class="info-side">
-            <text class="info">What about now?</text>
-          </div>
-        </div>
-        <div class="differences"></div>
-      </div>
+      {{/each}}
     </div>
   </div>
-  {{!-- <div id="arrows">
-    <span id="left-arrow" class="glyphicon glyphicon-chevron-left glyph-arrows" aria-hidden="true"></span>
-    <span id="right-arrow" class="glyphicon glyphicon-chevron-right glyph-arrows" aria-hidden="true"></span>
-    <span id="shuffle" class="glyphicon glyphicon-random glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
-    <span id="cast" class="glyphicon glyphicon-eye-open pull-right glyph-arrows" aria-hidden="true"></span>
-    <span id="help" class="glyphicon glyphicon-question-sign glyph-arrows pull-right glyph-arrows" aria-hidden="true"></span>
-  </div> --}}
+  <div class="hex-swiper-2">
+    <div class="swiper-wrapper">
+      {{#each hexagrams}}
+        <div class="swiper-slide">
+          <div id="hex-icon">
+            {{#eachReverse sequence}}
+              <div class="hex-icon-line {{#if this}}yang{{else}}yin{{/if}}">
+                <div class="hex-icon-line-left">&nbsp;</div>
+                <div class="hex-icon-line-right">&nbsp;</div>
+              </div>
+            {{/eachReverse}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
+<div class="hex-1">
+  <div class="title-row">
+    <span class="order">1</span><span class="name">Initiating</span>
+  </div>
+  <div class="hex-icon-compare">
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="1">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+  </div>
+  <div class="info-side">
+    <text class="info">What about now?</text>
+  </div>
+</div>
+<div class="hex-2">
+  <div class="title-row">
+    <span class="order">1</span><span class="name">Initiating</span>
+  </div>
+  <div class="hex-icon-compare">
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+    <div class="line yang" data-id="2">
+      <div class="left">&nbsp;</div>
+      <div class="right">&nbsp;</div>
+    </div>
+  </div>
+  <div class="info-side">
+    <text class="info">What about now?</text>
+  </div>
+</div>
+<div class="differences">
+  <div class="title">
+    <text class="title">Lines from Initiating</text>
+  </div>
+  <div class="line-diff">
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+  </div>
+  <div class="title">
+    <text class="title">Lines from Responding</text>
+  </div>
+  <div class="line-diff">
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+    <div class="text">
+      <text class="text">Text</text>
+    </div>
+    <div class="commentary">
+      <text class="commentary">Commentary</text>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function () {
+    $('body').css({ // Hack workaround, need to make a separate css file for this view
+      display: 'flex'
+    });
+
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var hexagrams = window.hexagrams = {{{json hexagrams}}};
     var visits = {{{json visits}}};
@@ -175,12 +212,70 @@
           }
         });
 
-        console.log('result: ', result);
-
         return result;
       } else {
-        return;
+        return [];
       }
+    };
+
+    var showLineDifferences = function (diff) {
+      $('.differences').children().remove();
+
+      if (diff.length) {
+        var result = {
+          '1': [],
+          '2': []
+        };
+
+        _.each(diff, function (val, index) {
+          result['1'].push(currentHexagrams['1'].lines[val]);
+          result['2'].push(currentHexagrams['2'].lines[val]);
+        });
+
+        var titleNode1 = $('<div class="title"><text class="title"></text></div>');
+        titleNode1.text('Lines from ' + currentHexagrams[1].title);
+        var titleNode2 = $('<div class="title"><text class="title"></text></div>');
+        titleNode2.text('Lines from ' + currentHexagrams[2].title);
+
+        var linesDiv1 = $('<div class="line-diff"></div>');
+        var linesDiv2 = $('<div class="line-diff"></div>');
+
+        _.each(diff, function (val) {
+          var line1 = $('<div class="line-diff-text"></div>');
+          var lineText1 = $('<text class="text"></text>');
+          var comm1 = $('<div class="line-diff-comm"><text class="comm"></text></div>');
+          var commText1 = $('<text class="commentary"></text>');
+          lineText1.text((val + 1) + '. ' + currentHexagrams['1'].lines[val].text);
+          line1.append(lineText1);
+          commText1.text(currentHexagrams['1'].lines[val].commentary);
+          comm1.append(commText1);
+          linesDiv1.append(line1);
+          linesDiv1.append(comm1);
+
+          var line2 = $('<div class="line-diff-text"></div>');
+          var lineText2 = $('<text class="text"></text>');
+          var comm2 = $('<div class="line-diff-comm"><text class="comm"></text></div>');
+          var commText2 = $('<text class="commentary"></text>');
+          lineText2.text((val + 1) + '. ' + currentHexagrams['2'].lines[val].text);
+          line2.append(lineText2);
+          commText2.text(currentHexagrams['2'].lines[val].commentary);
+          comm2.append(commText2);
+          linesDiv2.append(line2);
+          linesDiv2.append(comm2);
+        });
+
+        $('.differences').append(titleNode1);
+        $('.differences').append(linesDiv1);
+        $('.differences').append(titleNode2);
+        $('.differences').append(linesDiv2);
+        
+      } else {
+        var noDiff = $('<div class="title"><text class="title"></text></div>');
+        noDiff.text('Same hexagram shown');
+        $('.differences').append(noDiff);
+      }
+
+      return;
     };
 
     var changeSequence = function (num, updateTitle, updateHex, updateJudge, updateDifference) {
@@ -224,7 +319,7 @@
       };
 
       var animateDifference = function () {
-        compareHexagrams();
+        return showLineDifferences(compareHexagrams());
       };
 
       if (updateTitle) {
