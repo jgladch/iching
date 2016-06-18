@@ -358,14 +358,12 @@
     var hex2 = Number( getQueryParamByName('2'));
 
     if (hex1) {
-      console.log('hex1: ', hex1);
       setCurrentHexagram(1, hex1 - 1, true, true, true, false);
     } else {
       setCurrentHexagram(1, 0, true, true, true, false);
     }
 
     if (hex2) {
-      console.log('hex2: ', hex2);
       setCurrentHexagram(2, hex2 - 1, true, true, true, true);
     } else {
       setCurrentHexagram(2, 0, true, true, true, true);
