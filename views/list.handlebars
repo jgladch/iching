@@ -158,9 +158,8 @@
 
     jQuery.fn.reverse = [].reverse; // Smallest jquery plugin on earth
     var hexagrams = window.hexagrams = {{{json hexagrams}}};
-    var visits = {{{json visits}}};
-    var currentHexagram;
-    var flip = true;
+    var swiper1Init = false;
+    var swiper2Init = false;
 
     var currentHexagrams = {
       1: {},
@@ -170,6 +169,8 @@
     var setCurrentHexagram = function (num, index, updateTitle, updateHex, updateJudge, updateDiff) {
       var hex = currentHexagrams[num] = hexagrams[index];      
       changeSequence(num, updateTitle, updateHex, updateJudge, updateDiff);
+
+      console.log('hex: ', hex);
 
       return hex;
     };
@@ -343,6 +344,34 @@
       return swiper.slideTo(swiper.clickedIndex);
     };
 
+    var getQueryParamByName = function (name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+
+    var hex1 = Number(getQueryParamByName('1'));
+    var hex2 = Number( getQueryParamByName('2'));
+
+    if (hex1) {
+      console.log('hex1: ', hex1);
+      setCurrentHexagram(1, hex1 - 1, true, true, true, false);
+    } else {
+      setCurrentHexagram(1, 0, true, true, true, false);
+    }
+
+    if (hex2) {
+      console.log('hex2: ', hex2);
+      setCurrentHexagram(2, hex2 - 1, true, true, true, true);
+    } else {
+      setCurrentHexagram(2, 0, true, true, true, true);
+    }
+
+
     var hexSwiper1 = new Swiper ('.hex-swiper-1', {
       direction: 'horizontal',
       loop: true,
@@ -350,8 +379,12 @@
       slidesPerView: 7, // This should be done programattically to handle different screen widths
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
-        var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
-        return setCurrentHexagram(1, index, true, true, true, true);
+        if (swiper1Init) {
+          var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
+          return setCurrentHexagram(1, index, true, true, true, true);
+        } else {
+          swiper1Init = true;
+        }
       },
       onClick: handleClick
     });
@@ -363,8 +396,12 @@
       slidesPerView: 7, // This should be done programattically to handle different screen widths
       centeredSlides: true,
       onSlideChangeEnd: function (swiper) {
-        var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
-        return setCurrentHexagram(2, index, true, true, true, true);
+        if (swiper2Init) {
+          var index = swiper.activeIndex >= 64 ? swiper.activeIndex % 64 : swiper.activeIndex;
+          return setCurrentHexagram(2, index, true, true, true, true);
+        } else {
+          swiper2Init = true;
+        }
       },
       onClick: handleClick
     });
@@ -373,14 +410,6 @@
       var swiper = num === 1 ? hexSwiper1 : hexSwiper2;
       swiper.slideTo(index, 400, false);
     };
-
-    $('body').keydown(function(e){
-      if ((e.keyCode || e.which) === 37) { // left arrow
-        return shiftHexagrams(-1);
-      } else if ((e.keyCode || e.which) === 39) { // right arrow
-        return shiftHexagrams(1);
-      }
-    });
 
     $('.line').click(function () {
       var el = $(this);
